@@ -14,7 +14,6 @@ class PizzaService
     {
         $pizzaDAO = new PizzaDAO();
         return $pizzaDAO->getPizzas();
-        return $lijst;
     }
 
     public function getPizza($pizzaId)

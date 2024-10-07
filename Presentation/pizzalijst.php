@@ -90,7 +90,9 @@ $title = "Pizzalijst";
                         <?php endif; ?>
                     </tbody>
                 </table>
-                <button class="btn btn-success">Afrekenen</button>
+                <form action="afrekenen.php">
+                    <button class="btn btn-success">Afrekenen</button>
+                </form>
             </div>
         </div>
 

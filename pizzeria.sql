@@ -59,3 +59,22 @@ INSERT INTO pizzas (naam, omschrijving, prijs, promo_prijs, beschikbaar) VALUES
 ('Prosciutto e Funghi', 'Pizza met tomatensaus, mozzarella, gekookte ham en verse champignons.', 10.00, 7.50, TRUE),
 ('Tonno e Cipolla', 'Tomatensaus, mozzarella, tonijn en rode uiringen.', 9.50, 7.00, TRUE),
 ('Calabrese', 'Tomatensaus, mozzarella, pittige Calabrische worst en ui.', 10.00, 8.00, TRUE);
+
+INSERT INTO plaats (code, gemeente) VALUES 
+('3000', 'Leuven'),
+('3001', 'Heverlee'),
+('3010', 'Kessel-Lo (Leuven)'),
+('3012', 'Wilsele'),
+('3018', 'Wijgmaal (Brabant)'),
+('3020', 'Herent'),
+('3040', 'Huldenberg'),
+('3050', 'Oud-Heverlee'),
+('3053', 'Haasrode'),
+('3054', 'Vaalbeek'),
+('3060', 'Bertem'),
+('3061', 'Leefdaal'),
+('3070', 'Kortenberg'),
+('3078', 'Everberg'),
+('3080', 'Duisburg'),
+('3090', 'Overijse'),
+('3110', 'Rots');
