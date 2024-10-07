@@ -1,0 +1,15 @@
+{
+    "name": "janic/php-adv-eindproef-janice",
+    "autoload": {
+        "psr-4": {
+            "Data\\": "Data/"
+        }
+    },
+    "authors": [
+        {
+            "name": "janicemv",
+            "email": "janice.vilela@gmail.com"
+        }
+    ],
+    "require": {}
+}
