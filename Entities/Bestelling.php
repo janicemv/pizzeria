@@ -72,6 +72,15 @@ class Bestelling
         $this->calculateTotalPrice();
     }
 
+    public function removeBestellijnByIndex(int $index): void
+    {
+        if (isset($this->bestellijnen[$index])) {
+            unset($this->bestellijnen[$index]);
+            $this->bestellijnen = array_values($this->bestellijnen); //reindexation
+            $this->calculateTotalPrice();
+        }
+    }
+
     public function getBestellijnen(): array
     {
         return $this->bestellijnen;
@@ -83,7 +92,7 @@ class Bestelling
 
         if (is_array($this->bestellijnen)) {
             foreach ($this->bestellijnen as $bestellijn) {
-                $total += $bestellijn->getPrijs();
+                $total += $bestellijn->getTotalPrijs();
             }
         }
 
@@ -92,6 +101,7 @@ class Bestelling
 
     public function getTotaal(): float
     {
+        $this->calculateTotalPrice();
         return $this->totaal;
     }
 }

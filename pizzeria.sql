@@ -42,6 +42,7 @@ CREATE TABLE bestellijnen (
     lijnId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     bestelId INT NOT NULL,
     pizzaId INT NOT NULL,
+    hoeveel INT NOT NULL,
     prijs DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (bestelId) REFERENCES bestellingen(bestelId),
     FOREIGN KEY (pizzaId) REFERENCES pizzas(pizzaId)

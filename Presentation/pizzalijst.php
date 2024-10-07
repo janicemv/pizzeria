@@ -16,7 +16,7 @@ $title = "Pizzalijst";
 
     <div class="container">
         <div class="row">
-            <div class="col-md-9 pizzamenu">
+            <div class="col-md-8 pizzamenu">
                 <h1><?= $title ?></h1>
 
                 <table class="table">
@@ -35,7 +35,7 @@ $title = "Pizzalijst";
                                     <td><?= htmlspecialchars($pizza->getNaam()); ?></td>
                                     <td><?= htmlspecialchars($pizza->getOmschrijving()); ?></td>
                                     <td><?= number_format($pizza->getPrijs(), 2); ?>€</td>
-                                    <td><a class="text-decoration-none" href="cartController.php?pizzaId=<?= $pizza->getPizzaId(); ?>">➕</a></td>
+                                    <td><a class="text-decoration-none" href="cartController.php?pizzaId=<?= $pizza->getPizzaId(); ?>&quantity=1">➕</a></td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php else: ?>
@@ -47,32 +47,45 @@ $title = "Pizzalijst";
                 </table>
             </div>
 
-            <div class="col-md-3 mandje bg-light">
+            <div class="col-md-4 mandje bg-light">
                 <h1>Winkelmandje</h1>
+
                 <table class="table table-hover">
                     <thead>
                         <tr class="table-info">
                             <th>Pizza</th>
+                            <th>Hoeveel</th>
                             <th>Prijs</th>
                             <th>🗑️</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if (!empty($bestelling)):
-                            foreach ($bestelling->getBestellijnen() as $bestellijn): ?>
+                        <?php if (!empty($bestelling)): ?>
+                            <?php foreach ($bestelling->getBestellijnen() as $index => $bestellijn): ?>
                                 <tr>
-                                    <td><?= htmlspecialchars($bestellijn->GetPizza()->getNaam()); ?></td>
-                                    <td>€ <?= number_format($bestellijn->getPrijs(), 2); ?></td>
-                                    <td>🗑️</td>
+                                    <td><?= htmlspecialchars($bestellijn->getPizza()->getNaam()); ?></td>
+                                    <td>
+                                        <form action="cartController.php" method="get">
+                                            <input type="hidden" name="pizzaId" value="<?= $bestellijn->getPizza()->getPizzaId(); ?>">
+                                            <input type="number" name="quantity" value="<?= $bestellijn->getQuantity(); ?>" min="1">
+                                            <button type="submit" class="btn btn-sm">🔄</button>
+                                        </form>
+                                    </td>
+                                    <td>€ <?= number_format(($bestellijn->getPrijs() * $bestellijn->getQuantity()), 2); ?></td>
+                                    <td>
+                                        <a class="text-decoration-none" href="cartController.php?removeIndex=<?= $index; ?>" class="text-danger">🗑️</a>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                             <tr class="table-secondary">
                                 <th>Totaal</th>
+                                <th></th>
+                                <th></th>
                                 <th colspan="2">€ <?= number_format($bestelling->getTotaal(), 2); ?></th>
                             </tr>
                         <?php else: ?>
                             <tr>
-                                <td colspan="3">Geen bestellingen gevonden.</td>
+                                <td colspan="4">Geen bestellingen gevonden.</td>
                             </tr>
                         <?php endif; ?>
                     </tbody>
