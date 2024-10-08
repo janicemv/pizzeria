@@ -36,7 +36,7 @@ De uitbater van een pizzeria wensen hun diensten uit te breiden met de mogelijkh
 - Bij de optie “Ik heb een account” wordt een invoervak voor het e-mailadres en wachtwoord voorzien. Vult men de correcte gegevens voor een bestaande account in, dan meldt de bezoeker zich automatisch aan, en wordt hij/zij doorgestuurd naar een pagina waarin een overzicht van de bestelling getoond wordt (zie sectie “Afrekenen”). 
  
 [X] Bij de optie “Ik heb geen account” wordt gevraagd volgende gegevens ter plaatse in te vullen: naam- en voornaam, adres, postcode, gemeente en telefoonnummer. 
-[] Er is tevens een selectievakje ter beschikking dat de bezoeker kan aanvinken om in één moeite door a.d.h.v. deze gegevens een nieuwe account aan te maken (in dat 
+[X] Er is tevens een selectievakje ter beschikking dat de bezoeker kan aanvinken om in één moeite door a.d.h.v. deze gegevens een nieuwe account aan te maken (in dat 
 laatste geval wordt ook een e-mailadres en  wachtwoord gevraagd). 
 [] Daarna wordt er automatisch verder doorgestuurd naar de pagina “Afrekenen”.
 

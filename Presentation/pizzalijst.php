@@ -20,7 +20,7 @@ $title = "Pizzalijst";
                 <h1><?= $title ?></h1>
 
                 <table class="table">
-                    <thead class="table-primary">
+                    <thead class="table-info">
                         <tr>
                             <th>Pizza</th>
                             <th>Omschrijving</th>

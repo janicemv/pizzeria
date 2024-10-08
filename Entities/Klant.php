@@ -39,6 +39,11 @@ class Klant
         return $this->voornaam;
     }
 
+    public function getVollNaam(): string
+    {
+        return $this->naam . ", " . $this->voornaam;
+    }
+
     public function getStraat(): string
     {
         return $this->straat;
@@ -47,6 +52,11 @@ class Klant
     public function getNummer(): string
     {
         return $this->nummer;
+    }
+
+    public function getAdres(): string
+    {
+        return $this->straat . " " . $this->nummer;
     }
 
     public function getPlaatsId(): int

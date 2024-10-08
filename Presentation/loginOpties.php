@@ -15,16 +15,20 @@ $title = "Login opties";
     <?php require_once "presentation/components/menu.php"; ?>
 
     <h1>Kies een optie:</h1>
+    <br>
 
-    <div>
-        <a href="login.php" class="btn btn-primary">Ik heb een account</a>
-    </div>
-    <div>
-        <a href="registration.php" class="btn btn-secondary">Ik heb geen account</a>
+    <div class="col-sm-6 my-1">
+        <div class="row text-right">
+            <a href="login.php" class="btn btn-success">Ik heb een account</a>
+        </div>
+        <br>
+        <div class="row text-right">
+            <a href="registration.php" class="btn btn-secondary">Ik heb geen account</a>
+        </div>
+
+        <?php require_once "presentation/components/footer.html"; ?>
     </div>
 
-    <?php require_once "presentation/components/footer.html"; ?>
-    </div>
 </body>
 
 </html>

@@ -42,26 +42,15 @@ $klantDAO = new KlantDAO;
 //$klantId = $klantDAO->getKlantById(5);
 
 $klantService = new KlantService;
-
-$addGuest = $klantService->addNewGuest($klant);
-
-print_r($addGuest);
+//
+//$addGuest = $klantService->addNewGuest($klant);
+//
+//print_r($addGuest);
 
 //$getKlant = $klantDAO->getKlantByEmail('teste@oi.com.br');
-//print_r($getKlant);
 
-//
-//if ($klant !== null) {
-//    echo "Cliente encontrado:\n";
-//    echo "ID: " . $klant->getPlaatsId() . "\n";
-//    echo "Nome: " . $klant->getNaam() . "\n";
-//    echo "Sobrenome: " . $klant->getVoornaam() . "\n";
-//    echo "Rua: " . $klant->getStraat() . "\n";
-//    echo "Número: " . $klant->getNummer() . "\n";
-//    echo "Telefone: " . $klant->getPhone() . "\n";
-//    echo "E-mail: " . $klant->getEmail() . "\n";
-//    echo "Promo Eligible: " . ($klant->isPromoEligible() ? 'Sim' : 'Não') . "\n"; // Verifica se o cliente é elegível para promoção
-//} else {
-//    echo "Cliente não encontrado.\n";
-//}
-//
+//$checkLogin = $klantService->checkLogin('oi@oi.com.br', '123456');
+
+$plaats = $plaatService->findPlaatsById(39);
+
+print_r($plaats);

@@ -65,7 +65,12 @@ $title = "Klant gegevens";
 
                     <div class="row form-group text-right">
                         <button type="submit" name="step" value="basic" class="btn btn-secondary">Afrekenen as Gast</button>
+                    </div>
+                    <br>
+                    <div class="row form-group text-right">
+
                         <button type="submit" name="step" value="account" class="btn btn-success">Account Maken</button>
+                    </div>
                 </form>
             </div>
 

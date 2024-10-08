@@ -45,11 +45,6 @@ class Bestellijn
         return $this->hoeveel;
     }
 
-    // public function increaseQuantity(int $hoeveel): void
-    // {
-    //     $this->hoeveel += $hoeveel;
-    // }
-
     public function setQuantity(int $hoeveel): void
     {
         $this->hoeveel = $hoeveel;

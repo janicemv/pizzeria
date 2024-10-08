@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 SessionService::addUser($klant);
 
 
-                header("Location: afrekenen.php?klantId={$klantId}");
+                header("Location: afrekenen.php");
                 exit();
             } catch (RegistrationException $e) {
                 $error = $e->getMessage();

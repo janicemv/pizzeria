@@ -33,4 +33,9 @@ class SessionService
     {
         return isset($_SESSION['bestelling']) ? unserialize($_SESSION['bestelling']) : null;
     }
+
+    public static function logout(): void
+    {
+        session_destroy();
+    }
 }

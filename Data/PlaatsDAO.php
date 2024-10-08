@@ -27,4 +27,20 @@ class PlaatsDAO
         $dbh = null;
         return $lijst;
     }
+
+    public function getPlaatsById($plaatsId): Plaats
+    {
+        $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
+
+        $sql = "SELECT plaatsId, code, gemeente FROM plaats WHERE plaatsId = :plaatsId";
+
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute(array(':plaatsId' => $plaatsId));
+        $rij = $stmt->fetch(PDO::FETCH_ASSOC);
+        $plaats = new Plaats((int) $rij["plaatsId"], (int)$rij["code"], $rij["gemeente"]);
+
+        $dbh = null;
+
+        return $plaats;
+    }
 }

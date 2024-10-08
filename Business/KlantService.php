@@ -31,6 +31,16 @@ class KlantService
         return $klantDAO->addGuest($klant);
     }
 
+    public function checkLogin($email, $password): bool
+    {
+        $klantDAO = new KlantDAO;
+        $klant = $klantDAO->getKlantByEmail($email);
+
+        if ($klant instanceof Klant) return $klant && $klant->getPassword() === md5($password);
+
+        return false;
+    }
+
     public function findKlantByEmail(string $email): Klant
     {
         $klantDAO = new KlantDAO;
