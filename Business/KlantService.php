@@ -9,6 +9,7 @@ namespace Business;
 use Data\KlantDAO;
 use Entities\Klant;
 use Exceptions\RegistrationException;
+use Exceptions\LoginException;
 
 class KlantService
 {
@@ -20,6 +21,25 @@ class KlantService
             return $klantDAO->addKlant($klant);
         } else {
             throw new RegistrationException('E-mail bestaat!');
+        }
+    }
+
+    public function addNewGuest(Klant $klant): int
+    {
+        $klantDAO = new KlantDAO;
+
+        return $klantDAO->addGuest($klant);
+    }
+
+    public function findKlantByEmail(string $email): Klant
+    {
+        $klantDAO = new KlantDAO;
+
+        if ($klantDAO->getKlantByEmail($email) !== null) {
+
+            return $klantDAO->getKlantByEmail($email);
+        } else {
+            throw new LoginException('E-mail bestaat niet!');
         }
     }
 }

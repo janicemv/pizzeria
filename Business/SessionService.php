@@ -3,7 +3,7 @@
 
 namespace Business;
 
-use Entities\User;
+use Entities\Klant;
 use Entities\Pizza;
 use Entities\Bestellijn;
 use Entities\Bestelling;
@@ -14,12 +14,12 @@ session_start();
 class SessionService
 {
 
-    public static function addUser(User $user)
+    public static function addUser(Klant $klant)
     {
-        $_SESSION['user'] = serialize($user);
+        $_SESSION['user'] = serialize($klant);
     }
 
-    public static function getUser(): ?User
+    public static function getUser(): ?Klant
     {
         return isset($_SESSION['user']) ? unserialize($_SESSION['user']) : null;
     }

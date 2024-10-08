@@ -6,11 +6,11 @@ De proef bestaat uit twee delen.
 
 _Bespreek daarna je resultaten met de permanentie-instructeur._
  
-In het tweede deel vertrek je van deze databankstructuur en implementeer je deze in MySQL. 
+[X] In het tweede deel vertrek je van deze databankstructuur en implementeer je deze in MySQL. 
 
-- Ontwikkel de applicatie volgens een MVC-model. 
-- Vergeet niet om, waar nodig, een correcte foutafhandeling te implementeren. 
-- Hoewel enigszins ondergeschikt probeer je ook de lay-out van de webpagina’s te verzorgen. 
+[X] Ontwikkel de applicatie volgens een MVC-model. 
+[X]Vergeet niet om, waar nodig, een correcte foutafhandeling te implementeren. 
+[X] Hoewel enigszins ondergeschikt probeer je ook de lay-out van de webpagina’s te verzorgen. 
  
 Je krijgt voor het totale project vijf dagen tijd. 
 
@@ -36,7 +36,7 @@ De uitbater van een pizzeria wensen hun diensten uit te breiden met de mogelijkh
 - Bij de optie “Ik heb een account” wordt een invoervak voor het e-mailadres en wachtwoord voorzien. Vult men de correcte gegevens voor een bestaande account in, dan meldt de bezoeker zich automatisch aan, en wordt hij/zij doorgestuurd naar een pagina waarin een overzicht van de bestelling getoond wordt (zie sectie “Afrekenen”). 
  
 [X] Bij de optie “Ik heb geen account” wordt gevraagd volgende gegevens ter plaatse in te vullen: naam- en voornaam, adres, postcode, gemeente en telefoonnummer. 
-- Er is tevens een selectievakje ter beschikking dat de bezoeker kan aanvinken om in één moeite door a.d.h.v. deze gegevens een nieuwe account aan te maken (in dat 
+[] Er is tevens een selectievakje ter beschikking dat de bezoeker kan aanvinken om in één moeite door a.d.h.v. deze gegevens een nieuwe account aan te maken (in dat 
 laatste geval wordt ook een e-mailadres en  wachtwoord gevraagd). 
 [] Daarna wordt er automatisch verder doorgestuurd naar de pagina “Afrekenen”.
 
@@ -49,13 +49,13 @@ laatste geval wordt ook een e-mailadres en  wachtwoord gevraagd).
 
 ### Producten 
  
-[] Voor producten zijn de naam en prijs het belangrijkst. 
+[X] Voor producten zijn de naam en prijs het belangrijkst. 
 [] Daarnaast kunnen eventueel ook samenstelling/voedingswaarden, beschikbaarheid (seizoensafhankelijke producten) enz.. troeven zijn voor een goede site (facultatief). 
-[] Er kan tevens een promotieprijs ingesteld worden, die actief wordt wanneer een klant hiervoor in aanmerking komt (zie sectie “Klanten”). 
+[X] Er kan tevens een promotieprijs ingesteld worden, die actief wordt wanneer een klant hiervoor in aanmerking komt (zie sectie “Klanten”). 
  
 ### Klanten 
  
-[] Per klant worden naam, voornaam, straat, huisnummer, postcode, woonplaats, telefoon of gsm, e-mailadres, wachtwoord **(geëncrypteerd met MD5)** en eventuele speciale bemerkingen bewaard. Het is ook mogelijk om voor een bepaalde klant te bepalen of deze in aanmerking komt voor promotieprijzen. 
+[X] Per klant worden naam, voornaam, straat, huisnummer, postcode, woonplaats, telefoon of gsm, e-mailadres, wachtwoord **(geëncrypteerd met MD5)** en eventuele speciale bemerkingen bewaard. Het is ook mogelijk om voor een bepaalde klant te bepalen of deze in aanmerking komt voor promotieprijzen. 
 [] Zorg ervoor dat het e-mailadres van de laatste correcte aanmelding steeds in een cookie onthouden wordt, zodat de klant niet steeds opnieuw zijn/haar e-mailadres moet invullen om aan te melden. Merk op dat het wachtwoord wel steeds opnieuw ingegeven dient te worden.
 
 ### Algemene informatie – Wie zijn wij (optioneel) 
@@ -64,6 +64,6 @@ Informatie i.v.m. de zaak, lopende promoties, voorwaarden, gastenboek etcC
  
 ### Bestelinformatie 
  
-- Uiteraard wordt hier het klantnummer, datum en tijdstip van de bestelling bijgehouden, alsook aantallen, soorten, extra’s, kostprijs en eventuele informatie voor de pizzakoerier. 
+[] Uiteraard wordt hier het klantnummer, datum en tijdstip van de bestelling bijgehouden, alsook aantallen, soorten, extra’s, kostprijs en eventuele informatie voor de pizzakoerier. 
  
  

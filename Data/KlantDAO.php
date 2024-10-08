@@ -54,7 +54,32 @@ class KlantDAO
         return (int) $klantId;
     }
 
-    // TO FIX
+    public function addGuest(Klant $klant, bool $promoEligible = false): int
+    {
+        $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
+
+        $sql = "INSERT INTO klanten (naam, voornaam, straat, nummer, plaatsId, phone, promo_eligible, bemerkingen) 
+        VALUES (:naam, :voornaam, :straat, :nummer, :plaatsId, :phone, :promo_eligible, :bemerkingen)";
+
+        $stmt = $dbh->prepare($sql);
+
+        $stmt->execute([
+            ':naam' => $klant->getNaam(),
+            ':voornaam' => $klant->getVoornaam(),
+            ':straat' => $klant->getStraat(),
+            ':nummer' => $klant->getNummer(),
+            ':plaatsId' => $klant->getPlaatsId(),
+            ':phone' => $klant->getPhone(),
+            ':promo_eligible' => $promoEligible ? '1' : '0',
+            ':bemerkingen' => $klant->getBemerkingen() ?? ''
+        ]);
+
+        $klantId = $dbh->lastInsertId();
+        $dbh = null;
+
+        return (int) $klantId;
+    }
+
     public function getKlantByEmail(string $email): ?Klant
     {
         $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
@@ -70,19 +95,52 @@ class KlantDAO
         $dbh = null;
 
         if ($result) {
-            return new Klant(
-                (int)$result['klantId'],
-                $result['naam'],
-                $result['voornaam'],
-                $result['straat'],
-                (int)$result['nummer'],
-                (int)$result['plaatsId'],
-                $result['phone'],
-                $result['email'],
-                $result['password'],
-                (bool)$result['promo_eligible'],
-                $result['bemerkingen'] ?? null
-            );
+            $klant = new Klant();
+
+            $klant->setNaam($result['naam']);
+            $klant->setVoornaam($result['voornaam']);
+            $klant->setStraat($result['straat']);
+            $klant->setNummer($result['nummer']);
+            $klant->setPlaatsId((int)$result['plaatsId']);
+            $klant->setPhone($result['phone']);
+            $klant->setEmail($result['email']);
+            $klant->setPassword($result['password']);
+            $klant->setPromoEligible((bool)$result['promo_eligible']);
+            $klant->setBemerkingen($result['bemerkingen'] ?? null);
+            return $klant;
+        } else {
+            return null;
+        }
+    }
+
+    public function getKlantById(int $klantId): ?Klant
+    {
+        $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
+
+        $sql = "SELECT klantId, naam, voornaam, straat, nummer, plaatsId, phone, email, password, promo_eligible, bemerkingen 
+                    FROM klanten WHERE klantId = :klantId";
+
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute([':klantId' => $klantId]);
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $dbh = null;
+
+        if ($result) {
+            $klant = new Klant();
+
+            $klant->setNaam($result['naam']);
+            $klant->setVoornaam($result['voornaam']);
+            $klant->setStraat($result['straat']);
+            $klant->setNummer($result['nummer']);
+            $klant->setPlaatsId((int)$result['plaatsId']);
+            $klant->setPhone($result['phone']);
+            $klant->setEmail($result['email']);
+            $klant->setPassword($result['password']);
+            $klant->setPromoEligible((bool)$result['promo_eligible']);
+            $klant->setBemerkingen($result['bemerkingen'] ?? null);
+            return $klant;
         } else {
             return null;
         }

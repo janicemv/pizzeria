@@ -28,37 +28,40 @@ $plaatService = new PlaatService;
 $plaatsen = $plaatService->getAllPlaatsen();
 
 $klant = new Klant();
-$klant->setVoornaam('Teste');
-$klant->setNaam('3');
+$klant->setVoornaam('Guest 2');
+$klant->setNaam('test');
 $klant->setStraat('Lolstraat');
-$klant->setNummer('42');
-$klant->setPlaatsId(38);
+$klant->setNummer('21');
+$klant->setPlaatsId(49);
 $klant->setPhone('789654123');
-$klant->setEmail('teste@oi.com.br');
-$klant->setPassword('123456');
-$klant->setBemerkingen('oi');
+$klant->setBemerkingen('');
+
 
 $klantDAO = new KlantDAO;
 
+//$klantId = $klantDAO->getKlantById(5);
 
 $klantService = new KlantService;
 
-//$janice = $klantService->addNewKlant($klant);
+$addGuest = $klantService->addNewGuest($klant);
 
-//print_r($klant);
+print_r($addGuest);
 
-$getKlant = $klantDAO->getKlantByEmail('teste@oi.com.br');
+//$getKlant = $klantDAO->getKlantByEmail('teste@oi.com.br');
+//print_r($getKlant);
 
-if ($klant !== null) {
-    echo "Cliente encontrado:\n";
-    echo "ID: " . $klant->getPlaatsId() . "\n";
-    echo "Nome: " . $klant->getNaam() . "\n";
-    echo "Sobrenome: " . $klant->getVoornaam() . "\n";
-    echo "Rua: " . $klant->getStraat() . "\n";
-    echo "Número: " . $klant->getNummer() . "\n";
-    echo "Telefone: " . $klant->getPhone() . "\n";
-    echo "E-mail: " . $klant->getEmail() . "\n";
-    echo "Promo Eligible: " . ($klant->isPromoEligible() ? 'Sim' : 'Não') . "\n"; // Verifica se o cliente é elegível para promoção
-} else {
-    echo "Cliente não encontrado.\n";
-}
+//
+//if ($klant !== null) {
+//    echo "Cliente encontrado:\n";
+//    echo "ID: " . $klant->getPlaatsId() . "\n";
+//    echo "Nome: " . $klant->getNaam() . "\n";
+//    echo "Sobrenome: " . $klant->getVoornaam() . "\n";
+//    echo "Rua: " . $klant->getStraat() . "\n";
+//    echo "Número: " . $klant->getNummer() . "\n";
+//    echo "Telefone: " . $klant->getPhone() . "\n";
+//    echo "E-mail: " . $klant->getEmail() . "\n";
+//    echo "Promo Eligible: " . ($klant->isPromoEligible() ? 'Sim' : 'Não') . "\n"; // Verifica se o cliente é elegível para promoção
+//} else {
+//    echo "Cliente não encontrado.\n";
+//}
+//

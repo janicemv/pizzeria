@@ -9,20 +9,26 @@ namespace Entities;
 
 class Klant
 {
+    private ?int $klantId;
     private string $naam;
     private string $voornaam;
     private string $straat;
     private string $nummer;
     private int $plaatsId;
     private string $phone;
-    private string $email;
-    private string $password;
+    private ?string $email;
+    private ?string $password;
     private bool $promo_eligible;
     private ?string $bemerkingen;
 
 
 
     // Getters
+
+    public function getId(): int
+    {
+        return $this->klantId;
+    }
     public function getNaam(): string
     {
         return $this->naam;
@@ -53,12 +59,12 @@ class Klant
         return $this->phone;
     }
 
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
@@ -74,6 +80,11 @@ class Klant
     }
 
     // Setters
+
+    public function setId(int $klantId): void
+    {
+        $this->klantId = $klantId;
+    }
     public function setNaam(string $naam): void
     {
         $this->naam = $naam;
