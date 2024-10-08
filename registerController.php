@@ -36,27 +36,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $klant->setPhone($phone);
         $klant->setBemerkingen($bemerkingen);
 
+        $klantService = new KlantService();
+
+        SessionService::addUser($klant);
+
         if ($step === 'basic') {
-
-            $klantService = new KlantService();
-
-            try {
-                $klantId = $klantService->addNewGuest($klant);
-                $klant->setId($klantId);
-
-                SessionService::addUser($klant);
-
-
-                header("Location: afrekenen.php");
-                exit();
-            } catch (RegistrationException $e) {
-                $error = $e->getMessage();
-                header("Location: klantGegevens.php?error=" . urlencode($error));
-                exit();
-            }
+            header("Location: afrekenen.php");
+            exit();
         } else if ($step = 'account') {
-
-            SessionService::addUser($klant);
             header("Location: account.php");
             exit();
         }

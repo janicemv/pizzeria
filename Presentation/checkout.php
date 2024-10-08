@@ -24,6 +24,14 @@ $title = "Checkout";
     <h1><?= $title ?></h1>
 
     <div class="container">
+
+        <?php
+        if ($error): ?>
+            <div class="alert alert-danger">
+                <p class="error"><?php echo $error; ?></p>
+            </div>
+        <?php endif; ?>
+
         <div class="row">
             <div class="col-md-8">
                 <h2>Winkelmandje</h2>
@@ -80,7 +88,7 @@ $title = "Checkout";
         <div class="container">
             <div class="row text-right">
 
-                <button class="btn btn-success">Beslissen</button>
+                <a class="btn btn-success" href="beslissenController.php">Beslissen</a>
             </div>
         </div>
 

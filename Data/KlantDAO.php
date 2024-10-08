@@ -129,7 +129,7 @@ class KlantDAO
 
         if ($result) {
             $klant = new Klant();
-
+            $klant->setId($result['klantId']);
             $klant->setNaam($result['naam']);
             $klant->setVoornaam($result['voornaam']);
             $klant->setStraat($result['straat']);

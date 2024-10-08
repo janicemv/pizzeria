@@ -5,7 +5,7 @@ namespace Entities;
 
 class Bestelling
 {
-    private int $bestelId;
+    private ?int $bestelId;
     private ?int $klantId;
     private ?string $datum;
     private string $deliveryAddress;
@@ -21,6 +21,11 @@ class Bestelling
         return $this->bestelId;
     }
 
+    public function setBestelId(?int $bestelId): void
+    {
+        $this->bestelId = $bestelId;
+    }
+
     public function setKlantId(?int $klantId): void
     {
         $this->klantId = $klantId;
@@ -34,6 +39,11 @@ class Bestelling
     public function getDate(): ?string
     {
         return $this->datum;
+    }
+
+    public function setDate(?string $datum): void
+    {
+        $this->datum = $datum;
     }
 
     public function setDeliveryAddress(string $address): void

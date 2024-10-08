@@ -10,6 +10,7 @@ spl_autoload_register();
 use Business\SessionService;
 use Business\PlaatService;
 
+$error = $_GET['error'] ?? '';
 
 $user = SessionService::getUser();
 
