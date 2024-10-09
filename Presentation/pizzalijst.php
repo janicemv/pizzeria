@@ -15,6 +15,10 @@ $title = "Pizzalijst";
     <?php require_once "presentation/components/menu.php"; ?>
 
     <div class="container">
+        <pre>
+            <?php print_r($user) ?>
+            
+        </pre>
         <div class="row">
             <div class="col-md-8 pizzamenu">
                 <h1><?= $title ?></h1>

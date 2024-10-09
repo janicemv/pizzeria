@@ -23,23 +23,48 @@ $date = $currentTime->format('Y-m-d H:i:s');
 
 $bestelling->setDate($date);
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $bestelBemerkingen = isset($_POST['bemerkingen']) ? htmlspecialchars(trim($_POST['bemerkingen'])) : null;
 
-if ($user->getId() === 0) {
+    $bestelling->setBemerkingen($bestelBemerkingen);
 
-    try {
-        $klantId = $klantService->addNewGuest($user);
+    SessionService::addBestelling($bestelling);
 
-        $user->setId($klantId);
 
-        SessionService::addUser($user);
+    if ($user->getId() === 0) {
 
-        $bestelId = $bestelService->confirmOrder($klantId, $bestelling);
+        try {
+            $klantId = $klantService->addNewGuest($user);
 
-        header("Location: confirmation.php?bestelId=$bestelId");
-        exit();
-    } catch (BestellingException $e) {
-        $error = $e->getMessage();
-        header("Location: afrekenen.php?error=" . urlencode($error));
-        exit();
+            $user->setId($klantId);
+
+            SessionService::addUser($user);
+
+            $bestelId = $bestelService->confirmOrder($klantId, $bestelling);
+
+            header("Location: confirmation.php?bestelId=$bestelId");
+            exit();
+        } catch (BestellingException $e) {
+            $error = $e->getMessage();
+            header("Location: afrekenen.php?error=" . urlencode($error));
+            exit();
+        }
+    } else {
+        $klantId = $user->getId();
+
+        try {
+            $bestelId = $bestelService->confirmOrder($klantId, $bestelling);
+
+            $bestelling->setBestelId($bestelId);
+
+            SessionService::addBestelling($bestelling);
+
+            header("Location: confirmation.php");
+            exit();
+        } catch (BestellingException $e) {
+            $error = $e->getMessage();
+            header("Location: afrekenen.php?error=" . urlencode($error));
+            exit();
+        }
     }
 }

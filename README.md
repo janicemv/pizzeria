@@ -9,7 +9,7 @@ _Bespreek daarna je resultaten met de permanentie-instructeur._
 [X] In het tweede deel vertrek je van deze databankstructuur en implementeer je deze in MySQL. 
 
 [X] Ontwikkel de applicatie volgens een MVC-model. 
-[X]Vergeet niet om, waar nodig, een correcte foutafhandeling te implementeren. 
+[]Vergeet niet om, waar nodig, een correcte foutafhandeling te implementeren. 
 [X] Hoewel enigszins ondergeschikt probeer je ook de lay-out van de webpagina’s te verzorgen. 
  
 Je krijgt voor het totale project vijf dagen tijd. 
@@ -38,13 +38,13 @@ De uitbater van een pizzeria wensen hun diensten uit te breiden met de mogelijkh
 [X] Bij de optie “Ik heb geen account” wordt gevraagd volgende gegevens ter plaatse in te vullen: naam- en voornaam, adres, postcode, gemeente en telefoonnummer. 
 [X] Er is tevens een selectievakje ter beschikking dat de bezoeker kan aanvinken om in één moeite door a.d.h.v. deze gegevens een nieuwe account aan te maken (in dat 
 laatste geval wordt ook een e-mailadres en  wachtwoord gevraagd). 
-[] Daarna wordt er automatisch verder doorgestuurd naar de pagina “Afrekenen”.
+[X] Daarna wordt er automatisch verder doorgestuurd naar de pagina “Afrekenen”.
 
 ## Afrekenen 
  
 [X] Uiteindelijk krijgt de bezoeker een overzichtspagina te zien met alle gegevens van de bestelling, alsook de totaalprijs van de bestelling. 
 [] Let er op dat thuisbezorging niet in alle gemeenten mogelijk is. De bezoeker krijgt een foutmelding wanneer hij een postcode invult waar niet geleverd kan worden. 
-[] Er zijn op de afrekeningpagina nog links voorzien die de bezoeker kan volgen om last-minute zijn/haar adresgegevens of de inhoud van het winkelmandje bij te werken. 
+[X] Er zijn op de afrekeningpagina nog links voorzien die de bezoeker kan volgen om last-minute zijn/haar adresgegevens of de inhoud van het winkelmandje bij te werken. 
    
 ## Andere voorzieningen en varia 
 

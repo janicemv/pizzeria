@@ -16,6 +16,7 @@ use Business\SessionService;
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="index.php">Home</a>
+                <a class="nav-item nav-link" href="login.php">Login</a>
 
             </div>
         </div>

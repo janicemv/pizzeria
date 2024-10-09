@@ -21,7 +21,7 @@ class Bestelling
         return $this->bestelId;
     }
 
-    public function setBestelId(?int $bestelId): void
+    public function setBestelId(int $bestelId): void
     {
         $this->bestelId = $bestelId;
     }

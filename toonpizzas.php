@@ -15,4 +15,7 @@ $pizzas = $pizzaService->getAllPizzas();
 
 $bestelling = SessionService::getBestelling();
 
+$user = SessionService::getUser();
+
+
 include("presentation/pizzalijst.php");

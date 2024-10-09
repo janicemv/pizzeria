@@ -112,7 +112,7 @@ class BestellingDAO
                 ':datum' => $bestelling->getDate(),
                 ':delivery_address' => $bestelling->getDeliveryAddress(),
                 ':delivery_plaatsId' => $bestelling->getDeliveryPlaatsId(),
-                ':bemerkingen' => $bestelling->getBemerkingen(),
+                ':bemerkingen' => $bestelling->getBemerkingen() ?? '',
             ]);
             if (!$stmtBestelling->rowCount()) {
                 throw new BestellingException("Fout bij Bestelling bewaren");

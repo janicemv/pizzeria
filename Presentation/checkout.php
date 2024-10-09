@@ -122,10 +122,12 @@ $title = "Checkout";
     </div>
     <br>
     <div class="container">
-        <div class="row text-right">
-
-            <a class="btn btn-success" href="bevestigenController.php">Bevestigen</a>
-        </div>
+        <form action="bevestigenController.php" method="post">
+            <label for="bemerkingen">Bemerkingen:</label>
+            <input type="text" name="bemerkingen">
+            <button type="submit" class="btn btn-success">Bevestigen</button>
+        </form>
+    </div>
     </div>
 
     <pre>

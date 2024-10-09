@@ -3,13 +3,15 @@
 
 declare(strict_types=1);
 
-session_start();
-
 spl_autoload_register();
 
 use Exceptions\LoginException;
 use Business\KlantService;
 use Business\SessionService;
+
+$bestelling = SessionService::getBestelling();
+
+$user = SessionService::getUser();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -29,6 +31,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 SessionService::addUser($user);
 
                 $_SESSION['loggedin'] = true;
+
+                $bestelling->setDeliveryAddress($user->getAdres());
+                $bestelling->setDeliveryPlaatsId($user->getPlaatsId());
+
+                SessionService::addBestelling($bestelling);
+
+                setcookie('user_email', $email, time() + (86400 * 30), "/");
 
                 header("Location: afrekenen.php");
                 exit(0);
