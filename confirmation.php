@@ -16,11 +16,13 @@ $bestelId = $_GET['bestelId'];
 
 $user = SessionService::getUser();
 
+$bestelling = SessionService::getBestelling();
+
 $plaatService = new PlaatService;
 
 //$deliveryPlaats = $plaatService->findPlaatsById($bestelling->getDeliveryPlaatsId());
 
-var_dump($bestelId);
+var_dump($bestelling);
 
 
 //include("Presentation/bestelling.php");

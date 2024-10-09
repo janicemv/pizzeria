@@ -57,7 +57,7 @@ laatste geval wordt ook een e-mailadres en  wachtwoord gevraagd).
 ### Klanten 
  
 [X] Per klant worden naam, voornaam, straat, huisnummer, postcode, woonplaats, telefoon of gsm, e-mailadres, wachtwoord **(geëncrypteerd met MD5)** en eventuele speciale bemerkingen bewaard. Het is ook mogelijk om voor een bepaalde klant te bepalen of deze in aanmerking komt voor promotieprijzen. 
-[] Zorg ervoor dat het e-mailadres van de laatste correcte aanmelding steeds in een cookie onthouden wordt, zodat de klant niet steeds opnieuw zijn/haar e-mailadres moet invullen om aan te melden. Merk op dat het wachtwoord wel steeds opnieuw ingegeven dient te worden.
+[X] Zorg ervoor dat het e-mailadres van de laatste correcte aanmelding steeds in een cookie onthouden wordt, zodat de klant niet steeds opnieuw zijn/haar e-mailadres moet invullen om aan te melden. Merk op dat het wachtwoord wel steeds opnieuw ingegeven dient te worden.
 
 ### Algemene informatie – Wie zijn wij (optioneel) 
  

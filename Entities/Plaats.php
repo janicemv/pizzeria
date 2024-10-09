@@ -10,12 +10,14 @@ class Plaats
     private int $plaatsId;
     private int $code;
     private string $gemeente;
+    private bool $bezorging;
 
-    public function __construct(int $plaatsId, int $code, string $gemeente)
+    public function __construct(int $plaatsId, int $code, string $gemeente, bool $bezorging)
     {
         $this->plaatsId = $plaatsId;
         $this->code = $code;
         $this->gemeente = $gemeente;
+        $this->bezorging = $bezorging;
     }
 
     public function getPlaatsId(): int
@@ -31,6 +33,11 @@ class Plaats
     public function getGemeente(): string
     {
         return $this->gemeente;
+    }
+
+    public function getBezorging(): bool
+    {
+        return $this->bezorging;
     }
 
     public function setCode(string $code): void

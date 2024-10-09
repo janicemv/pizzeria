@@ -16,22 +16,10 @@ $title = "Checkout";
 
     <div class="container">
         <h1><?= $title ?></h1>
-        <pre>
-            Delivery Adres:
-            <?php print_r($deliveryAdres); ?>
-            <?php print_r($deliveryPlaatsId); ?>
-        </pre>
-        <pre>
-            User Adres:
-            <?php print_r($user->getAdres()); ?>
-            <?php print_r($user->getPlaatsId()); ?>
-        </pre>
 
-
-        <?php
-        if ($error): ?>
+        <?php if ($error): ?>
             <div class="alert alert-danger">
-                <p class="error"><?php echo $error; ?></p>
+                <p class="error"><?php echo htmlspecialchars($error); ?></p>
             </div>
         <?php endif; ?>
 
@@ -104,12 +92,27 @@ $title = "Checkout";
                                 <select name="plaatsId" class="form-control" required>
                                     <option value="">Selecteer Plaats</option>
                                     <?php foreach ($plaatsLijst as $plaatsKeuze): ?>
-                                        <option value="<?= $plaatsKeuze->getPlaatsId(); ?>"><?= $plaatsKeuze->getCode(); ?> - <?= htmlspecialchars($plaatsKeuze->getGemeente()); ?></option>
+                                        <?php if ($plaatsKeuze->getBezorging() === true): ?>
+                                            <option value="<?= $plaatsKeuze->getPlaatsId(); ?>"><?= $plaatsKeuze->getCode(); ?> - <?= htmlspecialchars($plaatsKeuze->getGemeente()); ?></option>
+                                        <?php endif; ?>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-primary mt-2">Opslaan</button>
                         </form>
+
+                    </div>
+                <?php endif; ?>
+                <br>
+                <?php if (empty($error)): ?>
+                    <div class="container">
+                        <div class="row text-center">
+                            <form action="bevestigenController.php" method="post">
+                                <label for="bemerkingen">Bemerkingen:</label>
+                                <input type="text" name="bemerkingen"><br><br>
+                                <button type="submit" class="btn btn-success">Bestelling Bevestigen</button>
+                            </form>
+                        </div>
                     </div>
                 <?php endif; ?>
             </div>
@@ -121,13 +124,7 @@ $title = "Checkout";
 
     </div>
     <br>
-    <div class="container">
-        <form action="bevestigenController.php" method="post">
-            <label for="bemerkingen">Bemerkingen:</label>
-            <input type="text" name="bemerkingen">
-            <button type="submit" class="btn btn-success">Bevestigen</button>
-        </form>
-    </div>
+
     </div>
 
     <pre>
