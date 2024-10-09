@@ -55,11 +55,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $bestelId = $bestelService->confirmOrder($klantId, $bestelling);
 
-            $bestelling->setBestelId($bestelId);
+            SessionService::removeBestelling();
 
-            SessionService::addBestelling($bestelling);
-
-            header("Location: confirmation.php");
+            header("Location: confirmation.php?bestelId=$bestelId");
             exit();
         } catch (BestellingException $e) {
             $error = $e->getMessage();

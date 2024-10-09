@@ -15,13 +15,16 @@ $title = "Pizzalijst";
     <?php require_once "presentation/components/menu.php"; ?>
 
     <div class="container">
-        <pre>
-            <?php print_r($user) ?>
-            
-        </pre>
+
+        <?php if ($user !== null) : ?>
+            <h3>Hallo, <?= $user->getVoornaam(); ?></h3>
+        <?php endif; ?>
+
         <div class="row">
             <div class="col-md-8 pizzamenu">
                 <h1><?= $title ?></h1>
+
+
 
                 <table class="table">
                     <thead class="table-info">
@@ -103,5 +106,10 @@ $title = "Pizzalijst";
         <?php require_once "presentation/components/footer.html"; ?>
     </div>
 </body>
+
+<pre>
+            <?php print_r($user) ?>
+            
+        </pre>
 
 </html>

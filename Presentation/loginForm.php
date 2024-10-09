@@ -20,9 +20,9 @@ $title = "Login";
 
                 <form action="loginController.php" method="post">
                     <div class="form-group">
-                        <input type="text" name="email" class="form-control" placeholder="E-mail">
+                        <input type="text" name="email" class="form-control" placeholder="E-mail" value="<?= htmlspecialchars($email) ?>">
                     </div>
-                    <div class="form-group">
+                    <div class=" form-group">
                         <input type="password" name="password" class="form-control" placeholder="Password">
                     </div>
                     <div class="form-group text-right">

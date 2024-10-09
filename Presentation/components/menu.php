@@ -23,7 +23,7 @@ use Business\SessionService;
         <div>
 
             <ul class="nav justify-content-end">
-                <li><a class="nav-item nav-link" href="toonMandje.php">🛒</a></li>
+                <li><a class="nav-item nav-link" href="afrekenen.php">🛒</a></li>
 
                 <li><a class="nav-item nav-link" href="logout.php">Logout</a></li>
             </ul>

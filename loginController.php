@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 SessionService::addBestelling($bestelling);
 
-                setcookie('user_email', $email, time() + (86400 * 30), "/");
+                setcookie('email', $email, time() + (86400 * 30), "/");
 
                 header("Location: afrekenen.php");
                 exit(0);

@@ -13,22 +13,14 @@ class Bestelling
     private ?string $bemerkingen;
     private ?array $bestellijnen = [];
     private float $totaal = 0;
+    private int $status;
 
     public function __construct() {}
 
+    // Getters
     public function getBestelId(): int
     {
         return $this->bestelId;
-    }
-
-    public function setBestelId(int $bestelId): void
-    {
-        $this->bestelId = $bestelId;
-    }
-
-    public function setKlantId(?int $klantId): void
-    {
-        $this->klantId = $klantId;
     }
 
     public function getKlantId(): ?int
@@ -41,6 +33,48 @@ class Bestelling
         return $this->datum;
     }
 
+    public function getDeliveryAddress(): string
+    {
+        return $this->deliveryAddress;
+    }
+
+    public function getDeliveryPlaatsId(): ?int
+    {
+        return $this->deliveryPlaatsId;
+    }
+
+    public function getBemerkingen(): ?string
+    {
+        return $this->bemerkingen;
+    }
+
+    public function getBestellijnen(): array
+    {
+        return $this->bestellijnen;
+    }
+
+    public function getTotaal(): float
+    {
+        $this->calculateTotalPrice();
+        return $this->totaal;
+    }
+
+    public function getStatus(): int
+    {
+        return $this->status;
+    }
+
+    // Setters
+    public function setBestelId(int $bestelId): void
+    {
+        $this->bestelId = $bestelId;
+    }
+
+    public function setKlantId(?int $klantId): void
+    {
+        $this->klantId = $klantId;
+    }
+
     public function setDate(?string $datum): void
     {
         $this->datum = $datum;
@@ -51,29 +85,14 @@ class Bestelling
         $this->deliveryAddress = $address;
     }
 
-    public function getDeliveryAddress(): string
-    {
-        return $this->deliveryAddress;
-    }
-
     public function setDeliveryPlaatsId(?int $plaatsId): void
     {
         $this->deliveryPlaatsId = $plaatsId;
     }
 
-    public function getDeliveryPlaatsId(): ?int
-    {
-        return $this->deliveryPlaatsId;
-    }
-
     public function setBemerkingen(?string $bemerkingen): void
     {
         $this->bemerkingen = $bemerkingen;
-    }
-
-    public function getBemerkingen(): ?string
-    {
-        return $this->bemerkingen;
     }
 
     public function addBestellijn(Bestellijn $bestellijn): void
@@ -86,14 +105,9 @@ class Bestelling
     {
         if (isset($this->bestellijnen[$index])) {
             unset($this->bestellijnen[$index]);
-            $this->bestellijnen = array_values($this->bestellijnen); //reindexation
+            $this->bestellijnen = array_values($this->bestellijnen); // reindexação
             $this->calculateTotalPrice();
         }
-    }
-
-    public function getBestellijnen(): array
-    {
-        return $this->bestellijnen;
     }
 
     private function calculateTotalPrice()
@@ -107,11 +121,5 @@ class Bestelling
         }
 
         $this->totaal = $total;
-    }
-
-    public function getTotaal(): float
-    {
-        $this->calculateTotalPrice();
-        return $this->totaal;
     }
 }

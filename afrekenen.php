@@ -1,11 +1,9 @@
 <?php
-
 // afrekenen.php
 
 declare(strict_types=1);
 
 spl_autoload_register();
-
 
 use Business\SessionService;
 use Business\PlaatService;
@@ -14,34 +12,36 @@ $error = $_GET['error'] ?? '';
 
 $user = SessionService::getUser();
 
+$bestelling = SessionService::getBestelling();
 
-if ($user !== null) {
+if (!isset($_SESSION['loggedin'])) {
+    $_SESSION['loggedin'] = false;
+}
 
-    $bestelling = SessionService::getBestelling();
 
-    $deliveryAdres = $bestelling->getDeliveryAddress();
-    $deliveryPlaatsId = $bestelling->getDeliveryPlaatsId();
-
-    if ($deliveryAdres === null) {
-        $deliveryAdres = $user->getAdres();
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
+    if (!isset($_COOKIE['email'])) {
+        include("Presentation/loginOpties.php");
+        exit();
     } else {
-        $deliveryAdres = $bestelling->getDeliveryAddress();
+        header("Location: login.php?email=" . urlencode($_COOKIE['email']));
+        exit();
     }
+}
 
-    if ($deliveryPlaatsId === null) {
-        $deliveryPlaatsId = $user->getPlaatsId();
-    } else {
-        $deliveryPlaatsId = $bestelling->getDeliveryPlaatsId();
-    }
 
-    $plaatService = new PlaatService;
+if ($user === null) {
+    include("Presentation/loginOpties.php");
+    exit();
+} else {
+
+    $deliveryAdres = $bestelling->getDeliveryAddress() ?? $user->getAdres();
+    $deliveryPlaatsId = $bestelling->getDeliveryPlaatsId() ?? $user->getPlaatsId();
+
+    $plaatService = new PlaatService();
     $plaatsLijst = $plaatService->getAllPlaatsen();
-
     $deliveryPlaats = $plaatService->findPlaatsById($deliveryPlaatsId);
 
     include("Presentation/checkout.php");
-    exit;
-} else {
-    include("Presentation/loginOpties.php");
-    exit;
+    exit();
 }

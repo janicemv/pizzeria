@@ -35,6 +35,7 @@ CREATE TABLE bestellingen (
     delivery_address VARCHAR(255),
     delivery_plaatsId INT,
     bemerkingen TEXT,
+    status int NOT NULL DEFAULT 1,
     FOREIGN KEY (klantId) REFERENCES klanten(klantId),
     FOREIGN KEY (delivery_plaatsId) REFERENCES plaats(plaatsId)
 );
@@ -48,6 +49,13 @@ CREATE TABLE bestellijnen (
     FOREIGN KEY (bestelId) REFERENCES bestellingen(bestelId),
     FOREIGN KEY (pizzaId) REFERENCES pizzas(pizzaId)
 );
+
+
+ CREATE TABLE statussen (
+  statusID int NOT NULL AUTO_INCREMENT,
+  status varchar(40) NOT NULL,
+  PRIMARY KEY (statusID)
+ );
 
 INSERT INTO pizzas (naam, omschrijving, prijs, promo_prijs, beschikbaar) VALUES
 ('Margherita', 'Klassieke pizza met tomatensaus, verse mozzarella, basilicum en extra vierge olijfolie.', 8.50, 7.00, TRUE),
@@ -79,3 +87,8 @@ INSERT INTO plaats (code, gemeente) VALUES
 ('3080', 'Duisburg'),
 ('3090', 'Overijse'),
 ('3110', 'Rots');
+
+INSERT INTO statussen (statusID, status) VALUES
+(1, 'Besteld'),
+(2, 'Gemaakt'),
+(3, 'Afgehaald');

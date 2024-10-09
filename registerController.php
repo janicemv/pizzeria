@@ -50,6 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             SessionService::addUser($klant);
 
+            $_SESSION['loggedin'] = true;
+
             header("Location: afrekenen.php");
             exit();
         } else if ($step === 'account') {
