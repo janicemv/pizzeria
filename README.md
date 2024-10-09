@@ -42,7 +42,8 @@ laatste geval wordt ook een e-mailadres en  wachtwoord gevraagd).
 
 ## Afrekenen 
  
-[] Uiteindelijk krijgt de bezoeker een overzichtspagina te zien met alle gegevens van de bestelling, alsook de totaalprijs van de bestelling. Let er op dat thuisbezorging niet in alle gemeenten mogelijk is. De bezoeker krijgt een foutmelding wanneer hij een postcode invult waar niet geleverd kan worden. 
+[X] Uiteindelijk krijgt de bezoeker een overzichtspagina te zien met alle gegevens van de bestelling, alsook de totaalprijs van de bestelling. 
+[] Let er op dat thuisbezorging niet in alle gemeenten mogelijk is. De bezoeker krijgt een foutmelding wanneer hij een postcode invult waar niet geleverd kan worden. 
 [] Er zijn op de afrekeningpagina nog links voorzien die de bezoeker kan volgen om last-minute zijn/haar adresgegevens of de inhoud van het winkelmandje bij te werken. 
    
 ## Andere voorzieningen en varia 
@@ -64,6 +65,6 @@ Informatie i.v.m. de zaak, lopende promoties, voorwaarden, gastenboek etcC
  
 ### Bestelinformatie 
  
-[] Uiteraard wordt hier het klantnummer, datum en tijdstip van de bestelling bijgehouden, alsook aantallen, soorten, extra’s, kostprijs en eventuele informatie voor de pizzakoerier. 
+[X] Uiteraard wordt hier het klantnummer, datum en tijdstip van de bestelling bijgehouden, alsook aantallen, soorten, extra’s, kostprijs en eventuele informatie voor de pizzakoerier. 
  
  

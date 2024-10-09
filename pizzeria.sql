@@ -24,6 +24,7 @@ CREATE TABLE klanten (
     password VARCHAR(255),
     promo_eligible BOOLEAN DEFAULT FALSE,
     bemerkingen TEXT,
+    guest BOOLEAN NOT NULL,
     FOREIGN KEY (plaatsId) REFERENCES plaats(plaatsId)
 );
 

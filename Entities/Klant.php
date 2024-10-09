@@ -20,6 +20,7 @@ class Klant
     private ?string $password;
     private bool $promo_eligible;
     private ?string $bemerkingen;
+    private bool $guest;
 
 
 
@@ -89,6 +90,11 @@ class Klant
         return $this->bemerkingen;
     }
 
+    public function getGuestStatus(): bool
+    {
+        return $this->guest;
+    }
+
     // Setters
 
     public function setId(int $klantId): void
@@ -143,5 +149,10 @@ class Klant
     public function setBemerkingen(?string $bemerkingen): void
     {
         $this->bemerkingen = $bemerkingen;
+    }
+
+    public function setGuestStatus(bool $guest): void
+    {
+        $this->guest = $guest;
     }
 }

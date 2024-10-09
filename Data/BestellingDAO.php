@@ -94,7 +94,7 @@ class BestellingDAO
         }
     }
 
-    public function saveOrder($klantId, Bestelling $bestelling)
+    public function saveBestelling($klantId, Bestelling $bestelling)
     {
 
         try {

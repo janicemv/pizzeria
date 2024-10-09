@@ -14,13 +14,30 @@ $error = $_GET['error'] ?? '';
 
 $user = SessionService::getUser();
 
-$bestelling = SessionService::getBestelling();
-
 
 if ($user !== null) {
-    $plaatService = new PlaatService;
 
-    $plaats = $plaatService->findPlaatsById($user->getPlaatsId());
+    $bestelling = SessionService::getBestelling();
+
+    $deliveryAdres = $bestelling->getDeliveryAddress();
+    $deliveryPlaatsId = $bestelling->getDeliveryPlaatsId();
+
+    if ($deliveryAdres === null) {
+        $deliveryAdres = $user->getAdres();
+    } else {
+        $deliveryAdres = $bestelling->getDeliveryAddress();
+    }
+
+    if ($deliveryPlaatsId === null) {
+        $deliveryPlaatsId = $user->getPlaatsId();
+    } else {
+        $deliveryPlaatsId = $bestelling->getDeliveryPlaatsId();
+    }
+
+    $plaatService = new PlaatService;
+    $plaatsLijst = $plaatService->getAllPlaatsen();
+
+    $deliveryPlaats = $plaatService->findPlaatsById($deliveryPlaatsId);
 
     include("Presentation/checkout.php");
     exit;

@@ -21,6 +21,10 @@ class BestelService
         return $bestelDAO->saveFromGuest($klant, $bestelling);
     }
 
-    // TO FIX!!
-    public function bestelFromKlant(Klant $klant, Bestelling $bestelling) {}
+    public function confirmOrder($klantId, Bestelling $bestelling)
+    {
+        $bestelDAO = new BestellingDAO;
+
+        return $bestelDAO->saveBestelling($klantId, $bestelling);
+    }
 }

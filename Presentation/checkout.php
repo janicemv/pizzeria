@@ -14,16 +14,19 @@ $title = "Checkout";
 <body>
     <?php require_once "presentation/components/menu.php"; ?>
 
-    <pre>
-        <?php print_r($user); ?>
-    </pre>
-
-    <pre>
-        <?php print_r($bestelling); ?>
-    </pre>
-    <h1><?= $title ?></h1>
-
     <div class="container">
+        <h1><?= $title ?></h1>
+        <pre>
+            Delivery Adres:
+            <?php print_r($deliveryAdres); ?>
+            <?php print_r($deliveryPlaatsId); ?>
+        </pre>
+        <pre>
+            User Adres:
+            <?php print_r($user->getAdres()); ?>
+            <?php print_r($user->getPlaatsId()); ?>
+        </pre>
+
 
         <?php
         if ($error): ?>
@@ -75,24 +78,65 @@ $title = "Checkout";
             <div class="col-md-4 mandje bg-light">
                 <h2>Bezorging</h2>
 
-                <p><?= $user->getVollNaam(); ?></p>
-                <p><?= $user->getAdres(); ?></p>
-                <p><?= $plaats->getCode(); ?> <?= $plaats->getGemeente(); ?></p>
-                <p><b>Telefoonnummer:</b> <?= $user->getPhone(); ?></p>
+                <p><?= htmlspecialchars($user->getVollNaam()); ?></p>
+                <p><?= htmlspecialchars($bestelling->getDeliveryAddress()); ?></p>
+                <p><?= $deliveryPlaats->getCode(); ?> <?= htmlspecialchars($deliveryPlaats->getGemeente()); ?></p>
+                <p><b>Telefoonnummer:</b> <?= htmlspecialchars($user->getPhone()); ?></p>
 
+                <div class="container">
+                    <div class="row text-right">
+                        <a class="btn btn-info" href="afrekenen.php?editAddress=1">Bezorging adres bewerken</a>
+                    </div>
+                </div>
+
+                <?php if (isset($_GET['editAddress']) && $_GET['editAddress'] == 1): ?>
+                    <div id="editAddressForm" class="mt-3">
+                        <form action="updateAdres.php" method="POST">
+                            <div class="form-group">
+                                <label for="delivery_address">Nieuw afleveradres:</label>
+                                <div class="form-group">
+                                    <label for="straat">Straat en nummer:</label>
+                                    <input type="text" name="delivery_address" class="form-control" placeholder="Straat" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="delivery_plaatsId">Plaats:</label>
+                                <select name="plaatsId" class="form-control" required>
+                                    <option value="">Selecteer Plaats</option>
+                                    <?php foreach ($plaatsLijst as $plaatsKeuze): ?>
+                                        <option value="<?= $plaatsKeuze->getPlaatsId(); ?>"><?= $plaatsKeuze->getCode(); ?> - <?= htmlspecialchars($plaatsKeuze->getGemeente()); ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-2">Opslaan</button>
+                        </form>
+                    </div>
+                <?php endif; ?>
             </div>
-            <br>
+
 
         </div>
+
         <br>
-        <div class="container">
-            <div class="row text-right">
 
-                <a class="btn btn-success" href="beslissenController.php">Beslissen</a>
-            </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="row text-right">
+
+            <a class="btn btn-success" href="bevestigenController.php">Bevestigen</a>
         </div>
+    </div>
 
-        <?php require_once "presentation/components/footer.html"; ?>
+    <pre>
+        <?php print_r($user); ?>
+    </pre>
+
+    <pre>
+        <?php print_r($bestelling); ?>
+    </pre>
+
+    <?php require_once "presentation/components/footer.html"; ?>
     </div>
 </body>
 

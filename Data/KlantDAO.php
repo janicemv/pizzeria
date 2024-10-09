@@ -30,8 +30,8 @@ class KlantDAO
     {
         $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
 
-        $sql = "INSERT INTO klanten (naam, voornaam, straat, nummer, plaatsId, phone, email, password, promo_eligible, bemerkingen) 
-        VALUES (:naam, :voornaam, :straat, :nummer, :plaatsId, :phone, :email, :password, :promo_eligible, :bemerkingen)";
+        $sql = "INSERT INTO klanten (naam, voornaam, straat, nummer, plaatsId, phone, email, password, promo_eligible, bemerkingen, guest) 
+        VALUES (:naam, :voornaam, :straat, :nummer, :plaatsId, :phone, :email, :password, :promo_eligible, :bemerkingen, :guest)";
 
         $stmt = $dbh->prepare($sql);
 
@@ -45,7 +45,8 @@ class KlantDAO
             ':email' => $klant->getEmail(),
             ':password' => md5($klant->getPassword()),
             ':promo_eligible' => $promoEligible ? '1' : '0',
-            ':bemerkingen' => $klant->getBemerkingen() ?? ''
+            ':bemerkingen' => $klant->getBemerkingen() ?? '',
+            ':guest' => 0
         ]);
 
         $klantId = $dbh->lastInsertId();
@@ -54,12 +55,12 @@ class KlantDAO
         return (int) $klantId;
     }
 
-    public function addGuest(Klant $klant, bool $promoEligible = false): int
+    public function addGuest(Klant $klant): int
     {
         $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
 
-        $sql = "INSERT INTO klanten (naam, voornaam, straat, nummer, plaatsId, phone, promo_eligible, bemerkingen) 
-        VALUES (:naam, :voornaam, :straat, :nummer, :plaatsId, :phone, :promo_eligible, :bemerkingen)";
+        $sql = "INSERT INTO klanten (naam, voornaam, straat, nummer, plaatsId, phone, promo_eligible, bemerkingen, guest) 
+        VALUES (:naam, :voornaam, :straat, :nummer, :plaatsId, :phone, :promo_eligible, :bemerkingen, :guest)";
 
         $stmt = $dbh->prepare($sql);
 
@@ -70,8 +71,9 @@ class KlantDAO
             ':nummer' => $klant->getNummer(),
             ':plaatsId' => $klant->getPlaatsId(),
             ':phone' => $klant->getPhone(),
-            ':promo_eligible' => $promoEligible ? '1' : '0',
-            ':bemerkingen' => $klant->getBemerkingen() ?? ''
+            ':promo_eligible' => 0,
+            ':bemerkingen' => $klant->getBemerkingen() ?? '',
+            ':guest' => 1
         ]);
 
         $klantId = $dbh->lastInsertId();

@@ -3,14 +3,14 @@
 
 declare(strict_types=1);
 
-session_start();
-
 spl_autoload_register();
 
 use Business\KlantService;
 use Entities\Klant;
 use Exceptions\RegistrationException;
 use Business\SessionService;
+
+$bestelling = SessionService::getBestelling();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $step = $_POST['step'] ?? null;
@@ -36,14 +36,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $klant->setPhone($phone);
         $klant->setBemerkingen($bemerkingen);
 
-        $klantService = new KlantService();
+        $bestelling->setDeliveryAddress($straat . " " . $nummer);
+        $bestelling->setDeliveryPlaatsId($plaatsId);
+
+        SessionService::addBestelling($bestelling);
 
         SessionService::addUser($klant);
 
         if ($step === 'basic') {
+
+            $klant->setGuestStatus(true);
+            $klant->setId(0);
+
+            SessionService::addUser($klant);
+
             header("Location: afrekenen.php");
             exit();
-        } else if ($step = 'account') {
+        } else if ($step === 'account') {
             header("Location: account.php");
             exit();
         }
