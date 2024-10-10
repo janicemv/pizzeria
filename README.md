@@ -9,7 +9,7 @@ _Bespreek daarna je resultaten met de permanentie-instructeur._
 [X] In het tweede deel vertrek je van deze databankstructuur en implementeer je deze in MySQL. 
 
 [X] Ontwikkel de applicatie volgens een MVC-model. 
-[]Vergeet niet om, waar nodig, een correcte foutafhandeling te implementeren. 
+**[]Vergeet niet om, waar nodig, een correcte foutafhandeling te implementeren.**
 [X] Hoewel enigszins ondergeschikt probeer je ook de lay-out van de webpagina’s te verzorgen. 
  
 Je krijgt voor het totale project vijf dagen tijd. 
@@ -42,8 +42,8 @@ laatste geval wordt ook een e-mailadres en  wachtwoord gevraagd).
 
 ## Afrekenen 
  
-[X] Uiteindelijk krijgt de bezoeker een overzichtspagina te zien met alle gegevens van de bestelling, alsook de totaalprijs van de bestelling. 
-[] Let er op dat thuisbezorging niet in alle gemeenten mogelijk is. De bezoeker krijgt een foutmelding wanneer hij een postcode invult waar niet geleverd kan worden. 
+[X] Uiteindelijk krijgt de bezoeker een overzichtspagina te zien met alle gegevens van de bestelling, alsook de totaalprijs van de beste lling. 
+[X] Let er op dat thuisbezorging niet in alle gemeenten mogelijk is. De bezoeker krijgt een foutmelding wanneer hij een postcode invult waar niet geleverd kan worden. 
 [X] Er zijn op de afrekeningpagina nog links voorzien die de bezoeker kan volgen om last-minute zijn/haar adresgegevens of de inhoud van het winkelmandje bij te werken. 
    
 ## Andere voorzieningen en varia 
@@ -51,7 +51,7 @@ laatste geval wordt ook een e-mailadres en  wachtwoord gevraagd).
 ### Producten 
  
 [X] Voor producten zijn de naam en prijs het belangrijkst. 
-[] Daarnaast kunnen eventueel ook samenstelling/voedingswaarden, beschikbaarheid (seizoensafhankelijke producten) enz.. troeven zijn voor een goede site (facultatief). 
+**[] Daarnaast kunnen eventueel ook samenstelling/voedingswaarden, beschikbaarheid (seizoensafhankelijke producten) enz.. troeven zijn voor een goede site (facultatief).**
 [X] Er kan tevens een promotieprijs ingesteld worden, die actief wordt wanneer een klant hiervoor in aanmerking komt (zie sectie “Klanten”). 
  
 ### Klanten 

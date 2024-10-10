@@ -7,6 +7,7 @@ declare(strict_types=1);
 namespace Data;
 
 use \PDO;
+use PDOException;
 use Data\DBConfig;
 use Exceptions\BestellingException;
 use Entities\Bestelling;
@@ -148,6 +149,105 @@ class BestellingDAO
                 $dbh->rollBack();
             }
             throw new BestellingException("Bestelling was niet bewaard: " . $e->getMessage());
+        }
+    }
+
+    public function getBestellingById($bestelId)
+    {
+        try {
+            $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
+
+            $sql1 = "SELECT * FROM bestellingen WHERE bestelId = :bestelId";
+            $stmt = $dbh->prepare($sql1);
+            $stmt->execute([':bestelId' => $bestelId]);
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($result) {
+                $bestelling = new Bestelling();
+
+                $bestelling->setBestelId((int)$bestelId);
+                $bestelling->setKlantId($result["klantId"]);
+                $bestelling->setDate($result["datum"]);
+                $bestelling->setDeliveryAddress($result["delivery_address"]);
+                $bestelling->setDeliveryPlaatsId($result["delivery_plaatsId"]);
+                $bestelling->setBemerkingen($result["bemerkingen"]);
+                $bestelling->setStatus((bool)$result["status"]);
+            } else {
+                return null;
+            }
+
+            $sql2 = "SELECT b.*, p.* FROM bestellijnen b LEFT JOIN pizzas p ON b.pizzaId = p.pizzaId WHERE bestelId = :bestelId";
+            $stmt = $dbh->prepare($sql2);
+            $stmt->execute([':bestelId' => $bestelId]);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if ($result) {
+
+                foreach ($result as $lijn) {
+
+                    $pizza = new Pizza($lijn["pizzaId"], $lijn["naam"], $lijn["omschrijving"], (float)$lijn["prijs"], (float)$lijn["promo_prijs"], (bool)$lijn["beschikbaar"]);
+
+                    $bestellijn = new Bestellijn($pizza, (int)$lijn["hoeveel"]);
+
+                    $bestelling->addBestellijn($bestellijn);
+                }
+            }
+            return $bestelling;
+        } catch (PDOException $e) {
+            echo "Fout: " . $e->getMessage();
+            return null;
+        } finally {
+            $dbh = null;
+        }
+    }
+
+    public function getBestellingen()
+    {
+        $bestellingen = [];
+
+        try {
+            $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
+            $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $sql1 = "SELECT * FROM bestellingen ORDER BY datum";
+            $stmt = $dbh->prepare($sql1);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach ($result as $row) {
+                $bestelling = new Bestelling();
+                $bestelling->setBestelId((int)$row["bestelId"]);
+                $bestelling->setKlantId($row["klantId"]);
+                $bestelling->setDate($row["datum"]);
+                $bestelling->setDeliveryAddress($row["delivery_address"]);
+                $bestelling->setDeliveryPlaatsId($row["delivery_plaatsId"]);
+                $bestelling->setBemerkingen($row["bemerkingen"]);
+                $bestelling->setStatus((bool)$row["status"]);
+
+                $sql2 = "SELECT b.*, p.* FROM bestellijnen b LEFT JOIN pizzas p ON b.pizzaId = p.pizzaId WHERE bestelId = :bestelId";
+                $stmt2 = $dbh->prepare($sql2);
+                $stmt2->execute([':bestelId' => $bestelling->getBestelId()]);
+                $lijnen = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+
+                if ($lijnen) {
+                    foreach ($lijnen as $lijn) {
+                        $pizza = new Pizza($lijn["pizzaId"], $lijn["naam"], $lijn["omschrijving"], (float)$lijn["prijs"], (float)$lijn["promo_prijs"], (bool)$lijn["beschikbaar"]);
+                        $bestellijn = new Bestellijn($pizza, (int)$lijn["hoeveel"]);
+                        $bestelling->addBestellijn($bestellijn);
+                    }
+                }
+
+                $bestellingen[] = $bestelling;
+            }
+
+            return $bestellingen;
+        } catch (PDOException $e) {
+            echo "Fout: " . $e->getMessage();
+            return null;
+        } finally {
+            if (isset($dbh)) {
+                $dbh = null;
+            }
         }
     }
 }

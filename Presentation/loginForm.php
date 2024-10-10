@@ -17,14 +17,16 @@ $title = "Login";
         <h1><?= $title ?></h1>
         <div class="form-row align-items-center">
             <div class="col-sm-3 my-1">
-
+                <br>
                 <form action="loginController.php" method="post">
                     <div class="form-group">
                         <input type="text" name="email" class="form-control" placeholder="E-mail" value="<?= htmlspecialchars($email) ?>">
                     </div>
+                    <br>
                     <div class=" form-group">
                         <input type="password" name="password" class="form-control" placeholder="Password">
                     </div>
+                    <br>
                     <div class="form-group text-right">
                         <button type="submit" class="btn btn-success">Login</button>
                     </div>

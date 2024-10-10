@@ -29,6 +29,12 @@ CREATE TABLE klanten (
     FOREIGN KEY (plaatsId) REFERENCES plaats(plaatsId)
 );
 
+ CREATE TABLE statussen (
+  statusID int NOT NULL AUTO_INCREMENT,
+  status varchar(40) NOT NULL,
+  PRIMARY KEY (statusID)
+ );
+ 
 CREATE TABLE bestellingen (
     bestelId INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     klantId INT,
@@ -39,6 +45,7 @@ CREATE TABLE bestellingen (
     status INT NOT NULL DEFAULT 1,
     FOREIGN KEY (klantId) REFERENCES klanten(klantId),
     FOREIGN KEY (delivery_plaatsId) REFERENCES plaats(plaatsId)
+    FOREIGN KEY (status) REFERENCES statussen(statusID),
 );
 
 CREATE TABLE bestellijnen (
@@ -52,11 +59,7 @@ CREATE TABLE bestellijnen (
 );
 
 
- CREATE TABLE statussen (
-  statusID int NOT NULL AUTO_INCREMENT,
-  status varchar(40) NOT NULL,
-  PRIMARY KEY (statusID)
- );
+
 
 INSERT INTO pizzas (naam, omschrijving, prijs, promo_prijs, beschikbaar) VALUES
 ('Margherita', 'Klassieke pizza met tomatensaus, verse mozzarella, basilicum en extra vierge olijfolie.', 8.50, 7.00, TRUE),

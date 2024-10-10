@@ -52,4 +52,11 @@ class KlantService
             throw new LoginException('E-mail bestaat niet!');
         }
     }
+
+    public function findKlantById(int $klantId)
+    {
+        $klantDAO = new KlantDAO;
+
+        return $klantDAO->getKlantById($klantId);
+    }
 }

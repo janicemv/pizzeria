@@ -37,23 +37,23 @@ if ($user === null) {
     include("Presentation/loginOpties.php");
     exit();
 } else {
-    try {
-        $deliveryAdres = $bestelling->getDeliveryAddress() ?? $user->getAdres();
-        $deliveryPlaatsId = $bestelling->getDeliveryPlaatsId() ?? $user->getPlaatsId();
 
-        $plaatService = new PlaatService();
-        $plaatsLijst = $plaatService->getAllPlaatsen();
-        $deliveryPlaats = $plaatService->findPlaatsById($deliveryPlaatsId);
+    if (empty($error)) {
+        try {
+            $deliveryAdres = $bestelling->getDeliveryAddress() ?? $user->getAdres();
+            $deliveryPlaatsId = $bestelling->getDeliveryPlaatsId() ?? $user->getPlaatsId();
 
-        // Verificação de entrega
-        if ($deliveryPlaats->getBezorging() === false) {
-            throw new AdresException("Dit afleveradres kan niet worden gebruikt. Selecteer alstublieft een ander adres.");
+            $plaatService = new PlaatService();
+            $plaatsLijst = $plaatService->getAllPlaatsen();
+            $deliveryPlaats = $plaatService->findPlaatsById($deliveryPlaatsId);
+
+            if ($deliveryPlaats === null || $deliveryPlaats->getBezorging() === false) {
+                throw new AdresException("Dit afleveradres kan niet worden gebruikt. Selecteer alstublieft een ander adres.");
+            }
+        } catch (AdresException $e) {
+            $error = "Adres fout: " . htmlspecialchars($e->getMessage());
         }
-        include("Presentation/checkout.php");
-        exit();
-    } catch (AdresException $e) {
-        $error = "Adres fout: " . htmlspecialchars($e->getMessage());
-        include("Presentation/checkout.php");
-        exit();
     }
+    include("Presentation/checkout.php");
+    exit();
 }

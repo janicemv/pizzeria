@@ -139,8 +139,8 @@ class KlantDAO
             $klant->setNummer($result['nummer']);
             $klant->setPlaatsId((int)$result['plaatsId']);
             $klant->setPhone($result['phone']);
-            $klant->setEmail($result['email']);
-            $klant->setPassword($result['password']);
+            $klant->setEmail($result['email'] ?? 'gast');
+            $klant->setPassword($result['password'] ?? 'gast');
             $klant->setPromoEligible((bool)$result['promo_eligible']);
             $klant->setBemerkingen($result['bemerkingen'] ?? null);
             return $klant;

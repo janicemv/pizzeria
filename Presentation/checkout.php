@@ -68,7 +68,11 @@ $title = "Checkout";
 
                 <p><?= htmlspecialchars($user->getVollNaam()); ?></p>
                 <p><?= htmlspecialchars($bestelling->getDeliveryAddress()); ?></p>
-                <p><?= $deliveryPlaats->getCode(); ?> <?= htmlspecialchars($deliveryPlaats->getGemeente()); ?></p>
+                <?php if (isset($deliveryPlaats)): ?>
+                    <p><?= $deliveryPlaats->getCode(); ?> <?= htmlspecialchars($deliveryPlaats->getGemeente()); ?></p>
+                <?php else: ?>
+                    <p><mark>Adres niet gevonden of niet geldig.</mark></p>
+                <?php endif; ?>
                 <p><b>Telefoonnummer:</b> <?= htmlspecialchars($user->getPhone()); ?></p>
 
                 <div class="container">
@@ -77,14 +81,18 @@ $title = "Checkout";
                     </div>
                 </div>
 
-                <?php if (isset($_GET['editAddress']) && $_GET['editAddress'] == 1): ?>
+                <?php if ((isset($_GET['editAddress'])) && $_GET['editAddress'] == 1): ?>
                     <div id="editAddressForm" class="mt-3">
                         <form action="updateAdres.php" method="POST">
                             <div class="form-group">
                                 <label for="delivery_address">Nieuw afleveradres:</label>
                                 <div class="form-group">
-                                    <label for="straat">Straat en nummer:</label>
-                                    <input type="text" name="delivery_address" class="form-control" placeholder="Straat" required>
+                                    <label for="straat">Straat:</label>
+                                    <input type="text" name="delivery_straat" class="form-control" placeholder="Straat" required>
+                                    <label for="straat">Nummer:</label>
+                                    <input type="number" name="delivery_nummer" class="form-control" placeholder="Nummer" required>
+
+
                                 </div>
                             </div>
                             <div class="form-group">
@@ -100,7 +108,6 @@ $title = "Checkout";
                             </div>
                             <button type="submit" class="btn btn-primary mt-2">Opslaan</button>
                         </form>
-
                     </div>
                 <?php endif; ?>
                 <br>

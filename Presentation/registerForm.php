@@ -39,6 +39,11 @@ $title = "Account Maken";
                     </div>
                 </form>
             </div>
+            <?php if ($error): ?>
+                <div class="alert alert-danger">
+                    <p class="error"><?php echo htmlspecialchars($error); ?></p>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 

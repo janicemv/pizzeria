@@ -32,15 +32,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 $_SESSION['loggedin'] = true;
 
-                $bestelling->setDeliveryAddress($user->getAdres());
-                $bestelling->setDeliveryPlaatsId($user->getPlaatsId());
+                if (isset($_SESSION['bestelling'])) {
 
-                SessionService::addBestelling($bestelling);
+                    $bestelling->setDeliveryAddress($user->getAdres());
+                    $bestelling->setDeliveryPlaatsId($user->getPlaatsId());
 
-                setcookie('email', $email, time() + (86400 * 30), "/");
+                    SessionService::addBestelling($bestelling);
 
-                header("Location: afrekenen.php");
-                exit(0);
+                    setcookie('email', $email, time() + (86400 * 30), "/");
+
+                    header("Location: afrekenen.php");
+                    exit(0);
+                } else {
+                    header("Location: index.php");
+                }
             } else {
                 throw new LoginException('E-mail bestaat niet of het wachtwoord is onjuist!');
             }

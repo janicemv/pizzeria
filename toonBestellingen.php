@@ -1,6 +1,6 @@
 <?php
 
-// confirmation.php
+// toonBestellingen.php
 
 declare(strict_types=1);
 
@@ -13,16 +13,13 @@ use Business\BestelService;
 
 $error = $_GET['error'] ?? '';
 
-$bestelId = $_GET['bestelId'];
-
 $user = SessionService::getUser();
 
 $bestelService = new BestelService;
 
-$bestelling = $bestelService->showBestelling($bestelId);
+$bestellingen = $bestelService->getAllOrders();
 
 $plaatService = new PlaatService;
 
-$deliveryPlaats = $plaatService->findPlaatsById($bestelling->getDeliveryPlaatsId());
 
-include("Presentation/bestelling.php");
+include("Presentation/allBestellingen.php");

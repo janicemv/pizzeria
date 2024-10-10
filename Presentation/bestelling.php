@@ -3,7 +3,7 @@
 
 declare(strict_types=1);
 
-$title = "Jouw Bestelling";
+$title = "Bestelling";
 
 ?>
 
@@ -15,7 +15,7 @@ $title = "Jouw Bestelling";
     <?php require_once "presentation/components/menu.php"; ?>
 
     <div class="container">
-        <h1><?= $title ?></h1>
+        <h1>Bestelling # <?= $bestelling->getBestelId(); ?></h1>
 
         <?php
         if ($error): ?>
@@ -26,7 +26,6 @@ $title = "Jouw Bestelling";
 
         <div class="row">
             <div class="col-md-8">
-                <h2>Bestelling # <?= $bestelling->getBestelId(); ?></h2>
 
                 <table class="table table-hover">
                     <thead>
@@ -58,18 +57,18 @@ $title = "Jouw Bestelling";
                     </tbody>
                 </table>
 
-                <p><b>Bemerkingen:</b> <?= htmlspecialchars($bestelling->getBemerkingen()); ?></p>
+                <p><b>Bemerkingen:</b> <?= htmlspecialchars($bestelling->getBemerkingen() ?: 'geen bemerkingen'); ?></p>
 
             </div>
 
             <div class="col-md-4 mandje bg-light">
-                <h2>Bezorging</h2>
+                <h4>Bezorging</h4>
 
                 <p><?= htmlspecialchars($user->getVollNaam()); ?></p>
                 <p><?= htmlspecialchars($bestelling->getDeliveryAddress()); ?></p>
                 <p><?= $deliveryPlaats->getCode(); ?> <?= htmlspecialchars($deliveryPlaats->getGemeente()); ?></p>
                 <p><b>Telefoonnummer:</b> <?= htmlspecialchars($user->getPhone()); ?></p>
-                <p><b>Bemerkingen:</b> <?= htmlspecialchars($user->getBemerkingen()); ?></p>
+                <p><b>Bemerkingen:</b> <?= htmlspecialchars($user->getBemerkingen() ?: 'geen bemerkingen'); ?></p>
 
 
 

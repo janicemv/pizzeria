@@ -8,7 +8,7 @@ class Bestelling
     private ?int $bestelId;
     private ?int $klantId;
     private ?string $datum;
-    private string $deliveryAddress;
+    private ?string $deliveryAddress;
     private int $deliveryPlaatsId;
     private ?string $bemerkingen;
     private ?array $bestellijnen = [];
@@ -93,6 +93,11 @@ class Bestelling
     public function setBemerkingen(?string $bemerkingen): void
     {
         $this->bemerkingen = $bemerkingen;
+    }
+
+    public function setStatus(bool $status): void
+    {
+        $this->status = $status;
     }
 
     public function addBestellijn(Bestellijn $bestellijn): void

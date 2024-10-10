@@ -27,4 +27,18 @@ class BestelService
 
         return $bestelDAO->saveBestelling($klantId, $bestelling);
     }
+
+    public function showBestelling($bestelId)
+    {
+        $bestelDAO = new BestellingDAO;
+
+        return $bestelDAO->getBestellingById($bestelId);
+    }
+
+    public function getAllOrders()
+    {
+        $bestelDAO = new BestellingDAO;
+
+        return $bestelDAO->getBestellingen();
+    }
 }

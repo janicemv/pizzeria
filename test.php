@@ -78,19 +78,19 @@ $now = $currentTime->format('Y-m-d H:i:s');
 $bestellingDAO = new BestellingDAO;
 
 $bestelService = new BestelService();
-
-$klant2 = $klantDAO->getKlantById(6);
-
-$klantId = $klant2->getId();
-
-$klant3 = new Klant();
-$klant3->setVoornaam('Guest5');
-$klant3->setNaam('confirmOrder');
-$klant3->setStraat('ALA');
-$klant3->setNummer('221');
-$klant3->setPlaatsId(49);
-$klant3->setPhone('789654123');
-$klant3->setBemerkingen('teste com guest');
+//
+//$klant2 = $klantDAO->getKlantById(6);
+//
+//$klantId = $klant2->getId();
+//
+//$klant3 = new Klant();
+//$klant3->setVoornaam('Guest5');
+//$klant3->setNaam('confirmOrder');
+//$klant3->setStraat('ALA');
+//$klant3->setNummer('221');
+//$klant3->setPlaatsId(49);
+//$klant3->setPhone('789654123');
+//$klant3->setBemerkingen('teste com guest');
 
 //$klantId3 = $klantService->addNewGuest($klant3);
 
@@ -104,16 +104,16 @@ $klant3->setBemerkingen('teste com guest');
 
 //$bestelId3 = $bestellingDAO->saveBestelling(5, $bestelling);
 
-$klant4 = new Klant();
-$klant4->setVoornaam('Guest5');
-$klant4->setNaam('confirmOrder');
-$klant4->setStraat('ALA');
-$klant4->setNummer('221');
-$klant4->setPlaatsId(49);
-$klant4->setEmail('ada1s@sdfc.com');
-$klant4->setPassword('123456');
-$klant4->setPhone('789654123');
-$klant4->setBemerkingen('teste com klant');
+//$klant4 = new Klant();
+//$klant4->setVoornaam('Guest5');
+//$klant4->setNaam('confirmOrder');
+//$klant4->setStraat('ALA');
+//$klant4->setNummer('221');
+//$klant4->setPlaatsId(49);
+//$klant4->setEmail('ada1s@sdfc.com');
+//$klant4->setPassword('123456');
+//$klant4->setPhone('789654123');
+//$klant4->setBemerkingen('teste com klant');
 
 //$klantId4 = $klantDAO->addKlant($klant4);
 
@@ -121,31 +121,36 @@ $klant4->setBemerkingen('teste com klant');
 
 //$klantId4 = $klantService->addNewKlant($klant4);
 
-$guest = new Klant();
-$guest->setVoornaam('bevestigen');
-$guest->setNaam('test');
-$guest->setStraat('ALA');
-$guest->setNummer('221');
-$guest->setPlaatsId(49);
-$guest->setPhone('789654123');
-$guest->setBemerkingen('teste bevestigen controller');
+//$guest = new Klant();
+//$guest->setVoornaam('bevestigen');
+//$guest->setNaam('test');
+//$guest->setStraat('ALA');
+//$guest->setNummer('221');
+//$guest->setPlaatsId(49);
+//$guest->setPhone('789654123');
+//$guest->setBemerkingen('teste bevestigen controller');
+//
+//$bestelling1 = new Bestelling();
+//$bestelling1->setDeliveryAddress($guest->getAdres());
+//$bestelling1->setDeliveryPlaatsId($guest->getPlaatsId());
+//$bestelling1->setDate($now);
+//$bestelling1->setBemerkingen("Bevestigen Controller test");
+//
+//$pizzaId = $pizzaService->getPizza(3);
+//$pizzaId1 = $pizzaService->getPizza(5);
+//
+//$bestellijn1 = new Bestellijn($pizzaId, 2);
+//$bestelling1->addBestellijn($bestellijn1);
+//
+//$bestellijn2 = new Bestellijn($pizzaId1, 1);
+//$bestelling1->addBestellijn($bestellijn2);
+//
+//$bestelId = $bestelService->confirmOrder(6, $bestelling1);
 
-$bestelling1 = new Bestelling();
-$bestelling1->setDeliveryAddress($guest->getAdres());
-$bestelling1->setDeliveryPlaatsId($guest->getPlaatsId());
-$bestelling1->setDate($now);
-$bestelling1->setBemerkingen("Bevestigen Controller test");
+// $bestel = $bestelService->showBestelling(36);
 
-$pizzaId = $pizzaService->getPizza(3);
-$pizzaId1 = $pizzaService->getPizza(5);
+//$bestellingen = $bestellingDAO->getBestellingen();
 
-$bestellijn1 = new Bestellijn($pizzaId, 2);
-$bestelling1->addBestellijn($bestellijn1);
+$bestellingen = $bestelService->getAllOrders();
 
-$bestellijn2 = new Bestellijn($pizzaId1, 1);
-$bestelling1->addBestellijn($bestellijn2);
-
-$bestelId = $bestelService->confirmOrder(6, $bestelling1);
-
-
-print_r($bestelId);
+print_r($bestellingen);
