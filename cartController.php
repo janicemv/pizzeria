@@ -25,6 +25,12 @@ if (isset($_GET['pizzaId']) && isset($_GET['quantity'])) {
 
     if ($bestelling === null) {
         $bestelling = new Bestelling();
+
+        if (isset($user)) {
+            $bestelling->setDeliveryAddress($user->getStraat() . " " . $user->getNummer());
+            $bestelling->setDeliveryPlaatsId($user->getPlaatsId());
+            SessionService::addBestelling($bestelling);
+        }
     }
 
     if ($pizza) {

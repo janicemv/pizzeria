@@ -95,4 +95,4 @@ INSERT INTO plaats (code, gemeente, bezorging) VALUES
 INSERT INTO statussen (statusID, status) VALUES
 (1, 'Besteld'),
 (2, 'Gemaakt'),
-(3, 'Afgehaald');
+(3, 'Bezorgd');

@@ -17,20 +17,27 @@ $title = "Account Maken";
         <h1><?= $title ?></h1>
 
         <div class="form-row align-items-center">
+
+            <?php if ($error): ?>
+                <div class="alert alert-danger">
+                    <p class="error"><?php echo htmlspecialchars($error); ?></p>
+                </div>
+            <?php endif; ?>
+
             <div class="col-sm-6 my-1">
                 <form action="accountController.php" method="post">
                     <div id="accountFields" style="display: block;">
                         <div class="form-group">
                             <label for="email">Email:</label>
-                            <input type="email" name="email" class="form-control" placeholder="E-mail" required>
+                            <input type="email" name="email" class="form-control" placeholder="E-mail">
                         </div>
                         <br>
                         <div class="form-group">
                             <label for="password">Wachtwoord:</label>
-                            <input type="password" name="password" class="form-control" placeholder="Wachtwoord" required>
+                            <input type="password" name="password" class="form-control" placeholder="Wachtwoord">
                             <br>
                             <label for="password2">Herhaal Wachtwoord:</label>
-                            <input type="password" name="password2" class="form-control" placeholder="Wachtwoord herhalen" required>
+                            <input type="password" name="password2" class="form-control" placeholder="Wachtwoord herhalen">
                         </div>
                     </div>
                     <br>
@@ -39,11 +46,7 @@ $title = "Account Maken";
                     </div>
                 </form>
             </div>
-            <?php if ($error): ?>
-                <div class="alert alert-danger">
-                    <p class="error"><?php echo htmlspecialchars($error); ?></p>
-                </div>
-            <?php endif; ?>
+
         </div>
     </div>
 

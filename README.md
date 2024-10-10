@@ -51,7 +51,7 @@ laatste geval wordt ook een e-mailadres en  wachtwoord gevraagd).
 ### Producten 
  
 [X] Voor producten zijn de naam en prijs het belangrijkst. 
-**[] Daarnaast kunnen eventueel ook samenstelling/voedingswaarden, beschikbaarheid (seizoensafhankelijke producten) enz.. troeven zijn voor een goede site (facultatief).**
+_[] Daarnaast kunnen eventueel ook samenstelling/voedingswaarden, beschikbaarheid (seizoensafhankelijke producten) enz.. troeven zijn voor een goede site (facultatief)._
 [X] Er kan tevens een promotieprijs ingesteld worden, die actief wordt wanneer een klant hiervoor in aanmerking komt (zie sectie “Klanten”). 
  
 ### Klanten 
@@ -61,7 +61,7 @@ laatste geval wordt ook een e-mailadres en  wachtwoord gevraagd).
 
 ### Algemene informatie – Wie zijn wij (optioneel) 
  
-Informatie i.v.m. de zaak, lopende promoties, voorwaarden, gastenboek etcC 
+Informatie i.v.m. de zaak, lopende promoties, voorwaarden, gastenboek etc
  
 ### Bestelinformatie 
  

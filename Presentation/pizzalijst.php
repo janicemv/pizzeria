@@ -109,6 +109,8 @@ $title = "Pizzalijst";
 
 <pre>
             <?php print_r($user) ?>
+
+            <?php print_r($bestelling) ?>
             
         </pre>
 

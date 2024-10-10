@@ -33,6 +33,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
     }
 }
 
+
+
+
 if ($user === null) {
     include("Presentation/loginOpties.php");
     exit();
@@ -40,6 +43,8 @@ if ($user === null) {
 
     if (empty($error)) {
         try {
+
+
             $deliveryAdres = $bestelling->getDeliveryAddress() ?? $user->getAdres();
             $deliveryPlaatsId = $bestelling->getDeliveryPlaatsId() ?? $user->getPlaatsId();
 
@@ -51,7 +56,7 @@ if ($user === null) {
                 throw new AdresException("Dit afleveradres kan niet worden gebruikt. Selecteer alstublieft een ander adres.");
             }
         } catch (AdresException $e) {
-            $error = "Adres fout: " . htmlspecialchars($e->getMessage());
+            $error =  htmlspecialchars($e->getMessage());
         }
     }
     include("Presentation/checkout.php");

@@ -15,6 +15,14 @@ $title = "Login";
     <?php require_once "presentation/components/menu.php"; ?>
     <div class="container">
         <h1><?= $title ?></h1>
+
+        <?php
+        if ($error): ?>
+            <div class="alert alert-danger">
+                <p class="error"><?php echo $error; ?></p>
+            </div>
+        <?php endif; ?>
+
         <div class="form-row align-items-center">
             <div class="col-sm-3 my-1">
                 <br>
@@ -32,12 +40,6 @@ $title = "Login";
                     </div>
                 </form>
 
-                <?php
-                if ($error): ?>
-                    <div class="alert alert-danger">
-                        <p class="error"><?php echo $error; ?></p>
-                    </div>
-                <?php endif; ?>
 
             </div>
         </div>

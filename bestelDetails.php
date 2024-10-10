@@ -22,7 +22,7 @@ $bestelService = new BestelService;
 $bestelling = $bestelService->showBestelling($bestelId);
 
 $klantService = new KlantService;
-$user = $klantService->findKlantById($bestelling->getKlantId());
+$klant = $klantService->findKlantById($bestelling->getKlantId());
 
 $plaatService = new PlaatService;
 $deliveryPlaats = $plaatService->findPlaatsById($bestelling->getDeliveryPlaatsId());

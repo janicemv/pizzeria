@@ -16,9 +16,12 @@ $title = "Klant gegevens";
     <div class="container">
         <h1><?= $title ?></h1>
         <div class="form-row align-items-center">
-            <pre>
-            <?php print_r($bestelling); ?>
-        </pre>
+
+            <?php if ($error): ?>
+                <div class="alert alert-danger">
+                    <p class="error"><?php echo htmlspecialchars($error); ?></p>
+                </div>
+            <?php endif; ?>
 
             <div class="col-sm-6 my-1">
                 <form action="registerController.php" method="post">
@@ -39,7 +42,7 @@ $title = "Klant gegevens";
                     <br>
                     <div class="form-group">
                         <label for="nummer">Huisnummer:</label>
-                        <input type="number" name="nummer" class="form-control" placeholder="Nummer" required>
+                        <input type="text" name="nummer" class="form-control" placeholder="Nummer" required>
                     </div>
                     <br>
                     <div class="form-group">
@@ -74,14 +77,6 @@ $title = "Klant gegevens";
                 </form>
             </div>
 
-
-            <br><br>
-
-            <?php if ($error): ?>
-                <div class="alert alert-danger">
-                    <p class="error"><?php echo htmlspecialchars($error); ?></p>
-                </div>
-            <?php endif; ?>
         </div>
     </div>
 

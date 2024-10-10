@@ -42,6 +42,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $bestelId = $bestelService->confirmOrder($klantId, $bestelling);
 
+            SessionService::removeBestelling();
+            SessionService::removeUser();
+            $_SESSION['loggedin'] = false;
+
             header("Location: confirmation.php?bestelId=$bestelId");
             exit();
         } catch (BestellingException $e) {

@@ -64,11 +64,11 @@ $title = "Bestelling";
             <div class="col-md-4 mandje bg-light">
                 <h4>Bezorging</h4>
 
-                <p><?= htmlspecialchars($user->getVollNaam()); ?></p>
+                <p><?= htmlspecialchars($klant->getVollNaam()); ?></p>
                 <p><?= htmlspecialchars($bestelling->getDeliveryAddress()); ?></p>
                 <p><?= $deliveryPlaats->getCode(); ?> <?= htmlspecialchars($deliveryPlaats->getGemeente()); ?></p>
-                <p><b>Telefoonnummer:</b> <?= htmlspecialchars($user->getPhone()); ?></p>
-                <p><b>Bemerkingen:</b> <?= htmlspecialchars($user->getBemerkingen() ?: 'geen bemerkingen'); ?></p>
+                <p><b>Telefoonnummer:</b> <?= htmlspecialchars($klant->getPhone()); ?></p>
+                <p><b>Bemerkingen:</b> <?= htmlspecialchars($klant->getBemerkingen() ?: 'geen bemerkingen'); ?></p>
 
 
 
@@ -88,7 +88,7 @@ $title = "Bestelling";
 
 </body>
 <pre>
-        <?php print_r($user); ?>
+        <?php print_r($klant); ?>
     </pre>
 
 <pre>

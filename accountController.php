@@ -28,6 +28,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $password = htmlspecialchars(trim($_POST['password']));
             $password2 = htmlspecialchars(trim($_POST['password2']));
 
+            if (empty($email) || empty($password) || empty($password2)) {
+                throw new RegistrationException('Vul alle verplichte velden in!');
+            }
+
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                throw new RegistrationException("Ongelidg email adres!");
+            }
+
             if ($password !== $password2) {
                 throw new RegistrationException("Wachtwoorden zijn niet gelijk!");
             }
@@ -49,7 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header("Location: afrekenen.php");
             exit();
         } catch (RegistrationException $e) {
-            $error = $e->getMessage();
+            $error = urlencode($e->getMessage());
+            header("Location: account.php?error=" . $error);
         }
     }
 }

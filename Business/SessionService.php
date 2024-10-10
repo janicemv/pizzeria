@@ -39,6 +39,11 @@ class SessionService
         unset($_SESSION['bestelling']);
     }
 
+    public static function removeUser(): void
+    {
+        unset($_SESSION['user']);
+    }
+
     public static function logout(): void
     {
         session_destroy();

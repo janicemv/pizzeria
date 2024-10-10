@@ -15,18 +15,19 @@ $bestelling = SessionService::getBestelling();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $step = $_POST['step'] ?? null;
 
-    $voornaam = htmlspecialchars(trim($_POST['voornaam']));
-    $naam = htmlspecialchars(trim($_POST['naam']));
-    $straat = htmlspecialchars(trim($_POST['straat']));
-    $nummer = htmlspecialchars(trim($_POST['nummer']));
-    $plaatsId = (int)$_POST['plaatsId'];
-    $phone = htmlspecialchars(trim($_POST['phone']));
-    $bemerkingen = isset($_POST['bemerkingen']) ? htmlspecialchars(trim($_POST['bemerkingen'])) : null;
+    try {
+        $voornaam = htmlspecialchars(trim($_POST['voornaam']));
+        $naam = htmlspecialchars(trim($_POST['naam']));
+        $straat = htmlspecialchars(trim($_POST['straat']));
+        $nummer = htmlspecialchars(trim($_POST['nummer']));
+        $plaatsId = (int)$_POST['plaatsId'];
+        $phone = htmlspecialchars(trim($_POST['phone']));
+        $bemerkingen = isset($_POST['bemerkingen']) ? htmlspecialchars(trim($_POST['bemerkingen'])) : null;
 
-    if (empty($voornaam) || empty($naam) || empty($straat) || empty($nummer) || empty($plaatsId) || empty($phone)) {
-        $error = 'Vul alle verplichte velden in!';
-        header("Location: klantGegevens.php?error=" . urlencode($error));
-    } else {
+        if (empty($voornaam) || empty($naam) || empty($straat) || empty($nummer) || empty($plaatsId) || empty($phone)) {
+            throw new RegistrationException('Vul alle verplichte velden in!');
+        }
+
         $klant = new Klant();
         $klant->setVoornaam($voornaam);
         $klant->setNaam($naam);
@@ -58,5 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header("Location: account.php");
             exit();
         }
+    } catch (RegistrationException $e) {
+        $error = urlencode($e->getMessage());
+        header("Location: registration.php?error=" . $error);
     }
 }

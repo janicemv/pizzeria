@@ -90,7 +90,7 @@ $title = "Checkout";
                                     <label for="straat">Straat:</label>
                                     <input type="text" name="delivery_straat" class="form-control" placeholder="Straat" required>
                                     <label for="straat">Nummer:</label>
-                                    <input type="number" name="delivery_nummer" class="form-control" placeholder="Nummer" required>
+                                    <input type="text" name="delivery_nummer" class="form-control" placeholder="Nummer" required>
 
 
                                 </div>
