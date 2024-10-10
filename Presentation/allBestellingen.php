@@ -63,7 +63,18 @@ $title = "Bestellingen";
                                             <td><?= htmlspecialchars($adres); ?></td>
                                             <td><?= $postcode; ?></td>
                                             <td><?= htmlspecialchars($datum); ?></td>
-                                            <td><?= $status; ?></td>
+                                            <td><?php switch ($status) {
+                                                    case 1:
+                                                        echo "Besteld";
+                                                        break;
+                                                    case 2:
+                                                        echo "Gemaakt";
+                                                        break;
+                                                    default:
+                                                        echo "Bezorgd";
+                                                        break;
+                                                }
+                                                ?></td>
                                         <?php else: ?>
                                             <td></td>
                                             <td></td>
