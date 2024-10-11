@@ -151,6 +151,6 @@ $bestelService = new BestelService();
 
 //$bestellingen = $bestellingDAO->getBestellingen();
 
-$bestellingen = $bestelService->getAllOrders();
+//$bestellingen = $bestelService->getAllOrders();
 
-print_r($bestellingen);
+$status = $bestelService->updateStatus(75);

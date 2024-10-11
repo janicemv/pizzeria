@@ -46,7 +46,8 @@ if (isset($_GET['pizzaId']) && isset($_GET['quantity'])) {
         }
 
         if (!$found) {
-            $bestellijn = new Bestellijn($pizza, $quantity);
+            $promoEligible = isset($user) && $user->isPromoEligible();
+            $bestellijn = new Bestellijn($pizza, $quantity, $promoEligible);
             $bestelling->addBestellijn($bestellijn);
         }
 

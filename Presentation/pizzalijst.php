@@ -107,11 +107,4 @@ $title = "Pizzalijst";
     </div>
 </body>
 
-<pre>
-            <?php print_r($user) ?>
-
-            <?php print_r($bestelling) ?>
-            
-        </pre>
-
 </html>

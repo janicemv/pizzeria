@@ -16,10 +16,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $step = $_POST['step'] ?? null;
 
     try {
-        $voornaam = htmlspecialchars(trim($_POST['voornaam']));
-        $naam = htmlspecialchars(trim($_POST['naam']));
-        $straat = htmlspecialchars(trim($_POST['straat']));
-        $nummer = htmlspecialchars(trim($_POST['nummer']));
+        $voornaam = htmlspecialchars(ucwords(trim($_POST['voornaam'])));
+        $naam = htmlspecialchars(ucwords(trim($_POST['naam'])));
+        $straat = htmlspecialchars(ucwords(trim($_POST['straat'])));
+        $nummer = htmlspecialchars(ucwords(trim($_POST['nummer'])));
         $plaatsId = (int)$_POST['plaatsId'];
         $phone = htmlspecialchars(trim($_POST['phone']));
         $bemerkingen = isset($_POST['bemerkingen']) ? htmlspecialchars(trim($_POST['bemerkingen'])) : null;

@@ -34,6 +34,7 @@ $title = "Bestellingen";
                         <th>Postcode</th>
                         <th>Datum</th>
                         <th>Status</th>
+                        <th class="text-center">🔄</th>
                         <th>Pizza</th>
                         <th>Aantal</th>
                         <th>Prijs</th>
@@ -58,24 +59,33 @@ $title = "Bestellingen";
                                     <tr>
                                         <?php if ($index === 0):
                                         ?>
-                                            <td><?= $bestelId; ?> <a class="text-decoration-none" href="bestelDetails.php?bestelId=<?= $bestelId ?>">👁️</a></td>
+                                            <td><a class="text-decoration-none" href="bestelDetails.php?bestelId=<?= $bestelId ?>"><?= $bestelId; ?> 👁️</a></td>
                                             <td><?= $klantNummer; ?></td>
                                             <td><?= htmlspecialchars($adres); ?></td>
                                             <td><?= $postcode; ?></td>
                                             <td><?= htmlspecialchars($datum); ?></td>
-                                            <td><?php switch ($status) {
-                                                    case 1:
-                                                        echo "Besteld";
-                                                        break;
-                                                    case 2:
-                                                        echo "Gemaakt";
-                                                        break;
-                                                    default:
-                                                        echo "Bezorgd";
-                                                        break;
-                                                }
-                                                ?></td>
+                                            <?php switch ($status):
+                                                case 1: ?>
+                                                    <td class="text-info">Besteld</td>
+                                                <?php break;
+                                                case 2: ?>
+                                                    <td class="text-warning">Gemaakt</td>
+                                                <?php break;
+                                                case 3: ?>
+                                                    <td class="text-success">Bezorgd</td>
+                                            <?php break;
+                                            endswitch; ?>
+                                            <td class="text-center">
+                                                <form action="updateStatus.php" method="POST">
+                                                    <input type="hidden" name="bestelId" value="<?= $bestelId; ?>">
+                                                    <button type="submit" class="btn btn-sm">🔄</button>
+                                                </form>
+                                            </td>
+
+
+
                                         <?php else: ?>
+                                            <td></td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
@@ -90,17 +100,17 @@ $title = "Bestellingen";
 
                                 <?php endforeach; ?>
                                 <tr class="table-secondary">
-                                    <th colspan="7"></th>
+                                    <th colspan="8"></th>
                                     <th>Totaal</th>
                                     <th>€ <?= number_format($bestelling->getTotaal(), 2); ?></th>
                                 </tr>
                             <?php else: ?>
                                 <tr>
-                                    <td colspan="9">Geen bestellijnen gevonden voor deze bestelling.</td>
+                                    <td colspan="10">Geen bestellijnen gevonden voor deze bestelling.</td>
                                 </tr>
                             <?php endif; ?>
                             <tr>
-                                <td colspan="9"></td>
+                                <td colspan="10"></td>
                             </tr>
                         <?php endforeach; ?>
                     <?php else: ?>

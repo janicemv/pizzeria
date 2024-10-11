@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         try {
 
-            $email = htmlspecialchars(trim($_POST['email']));
+            $email = strtolower(htmlspecialchars(trim($_POST['email'])));
             $password = htmlspecialchars(trim($_POST['password']));
             $password2 = htmlspecialchars(trim($_POST['password2']));
 

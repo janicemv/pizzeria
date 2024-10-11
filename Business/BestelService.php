@@ -41,4 +41,11 @@ class BestelService
 
         return $bestelDAO->getBestellingen();
     }
+
+    public function updateStatus($bestelId)
+    {
+        $bestelDAO = new BestellingDAO;
+
+        return $bestelDAO->changeStatus($bestelId);
+    }
 }

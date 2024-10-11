@@ -16,7 +16,7 @@ $user = SessionService::getUser();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
-        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+        $email = strtolower(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL));
         $password = $_POST['password'];
 
         if (empty($email) || empty($password)) {

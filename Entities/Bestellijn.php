@@ -11,10 +11,10 @@ class Bestellijn
     private int $hoeveel;
     private float $prijs;
 
-    public function __construct(Pizza $pizza, int $hoeveel)
+    public function __construct(Pizza $pizza, int $hoeveel, bool $promoEligible = false)
     {
         $this->pizza = $pizza;
-        $this->prijs = $pizza->getPrijs();
+        $this->prijs = $promoEligible && $pizza->getPromoPrijs() !== null ? $pizza->getPromoPrijs() : $pizza->getPrijs();
         $this->hoeveel = $hoeveel;
     }
 
@@ -57,6 +57,6 @@ class Bestellijn
 
     public function getTotalPrijs(): float
     {
-        return $this->pizza->getPrijs() * $this->hoeveel;
+        return $this->prijs * $this->hoeveel;
     }
 }

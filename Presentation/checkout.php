@@ -134,14 +134,6 @@ $title = "Checkout";
 
     </div>
 
-    <pre>
-        <?php print_r($user); ?>
-    </pre>
-
-    <pre>
-        <?php print_r($bestelling); ?>
-    </pre>
-
     <?php require_once "presentation/components/footer.html"; ?>
     </div>
 </body>

@@ -171,7 +171,7 @@ class BestellingDAO
                 $bestelling->setDeliveryAddress($result["delivery_address"]);
                 $bestelling->setDeliveryPlaatsId($result["delivery_plaatsId"]);
                 $bestelling->setBemerkingen($result["bemerkingen"]);
-                $bestelling->setStatus((bool)$result["status"]);
+                $bestelling->setStatus((int)$result["status"]);
             } else {
                 return null;
             }
@@ -209,7 +209,7 @@ class BestellingDAO
             $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
             $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $sql1 = "SELECT * FROM bestellingen ORDER BY datum";
+            $sql1 = "SELECT * FROM bestellingen ORDER BY status, datum";
             $stmt = $dbh->prepare($sql1);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -222,7 +222,7 @@ class BestellingDAO
                 $bestelling->setDeliveryAddress($row["delivery_address"]);
                 $bestelling->setDeliveryPlaatsId($row["delivery_plaatsId"]);
                 $bestelling->setBemerkingen($row["bemerkingen"]);
-                $bestelling->setStatus((bool)$row["status"]);
+                $bestelling->setStatus((int)$row["status"]);
 
                 $sql2 = "SELECT b.*, p.* FROM bestellijnen b LEFT JOIN pizzas p ON b.pizzaId = p.pizzaId WHERE bestelId = :bestelId";
                 $stmt2 = $dbh->prepare($sql2);
@@ -249,5 +249,22 @@ class BestellingDAO
                 $dbh = null;
             }
         }
+    }
+
+    public function changeStatus($bestelId)
+    {
+        $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
+
+        $sql = "UPDATE bestellingen 
+        SET status = CASE 
+            WHEN status < 3 THEN status + 1
+            ELSE status
+        END
+        WHERE bestelId = :bestelId";
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindParam(':bestelId', $bestelId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $dbh = null;
     }
 }

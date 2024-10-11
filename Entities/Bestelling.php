@@ -95,7 +95,7 @@ class Bestelling
         $this->bemerkingen = $bemerkingen;
     }
 
-    public function setStatus(bool $status): void
+    public function setStatus(int $status): void
     {
         $this->status = $status;
     }

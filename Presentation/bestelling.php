@@ -87,12 +87,6 @@ $title = "Bestelling";
     </div>
 
 </body>
-<pre>
-        <?php print_r($klant); ?>
-    </pre>
 
-<pre>
-        <?php print_r($bestelling); ?>
-    </pre>
 
 </html>

@@ -87,7 +87,7 @@ class Klant
 
     public function getBemerkingen(): ?string
     {
-        return $this->bemerkingen;
+        return "promo klant - " . $this->bemerkingen;
     }
 
     public function getGuestStatus(): bool

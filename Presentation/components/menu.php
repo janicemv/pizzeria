@@ -17,7 +17,8 @@ use Business\SessionService;
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="index.php">Home</a>
                 <a class="nav-item nav-link" href="toonBestellingen.php">Bestellingen</a>
-
+                <a class="nav-item nav-link" href="about_NL.php">About (NL)</a>
+                <a class="nav-item nav-link" href="about_EN.php">About (EN)</a>
             </div>
         </div>
         <div>

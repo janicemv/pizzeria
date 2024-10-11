@@ -1,49 +1,75 @@
-## About
+<?php
+// Presentation/about_content.php
 
-This project, developed as a final PHP exercise, explores the creation of a functional online ordering system for a pizzeria. Implemented following the MVC model, the system integrates different aspects of an e-commerce platform, from pizza viewing to order processing and inventory management. Visitors can browse the available pizzas and add items to the cart without needing to create an account, providing a simplified and smooth user experience.
+declare(strict_types=1);
 
-The system's goal is to simulate a real online ordering environment, where customers can register, log in, and track their orders. Additionally, the system includes advanced features such as promotions handling, delivery address validation, and order management, offering a comprehensive view of how to develop a robust and scalable PHP application. This project demonstrates how best programming practices and an efficient database structure can be applied to meet the needs of a real-world client.
+$title = "About";
 
-### Basic features implemented in the project:
+?>
 
-**User Registration and Login:**
+<!DOCTYPE html>
+<html lang="en">
+<?php require_once "presentation/components/head.php"; ?>
 
-- Users can create an account or log in using their email and password.
-- Option to place orders as a guest without creating an account.
+<body>
+    <?php require_once "presentation/components/menu.php"; ?>
 
-**Pizza Catalog:**
+    <div class="container">
+        <h1><?= $title ?></h1>
 
-- Display all available pizzas with names, prices, and descriptions.
-- Add pizzas to the shopping cart and view the cart contents at any time.
+        <p>This project, developed as a final PHP exercise, explores the creation of a functional online ordering system for a pizzeria. Implemented following the MVC model, the system integrates different aspects of an e-commerce platform, from pizza viewing to order processing and inventory management. Visitors can browse the available pizzas and add items to the cart without needing to create an account, providing a simplified and smooth user experience.</p>
 
-**Shopping Cart:**
+        <p>The system's goal is to simulate a real online ordering environment, where customers can register, log in, and track their orders. Additionally, the system includes advanced features such as promotions handling, delivery address validation, and order management, offering a comprehensive view of how to develop a robust and scalable PHP application. This project demonstrates how best programming practices and an efficient database structure can be applied to meet the needs of a real-world client.</p>
 
-- Add, remove, or adjust pizza quantities in the cart.
-- Real-time update of total price based on cart contents.
+        <h2 class="p-2">Basic features implemented in the project:</h2>
 
-**Order Checkout:**
+        <h4>User Registration and Login:</h4>
+        <ul class="p-3">
+            <li>Users can create an account or log in using their email and password.</li>
+            <li>Option to place orders as a guest without creating an account.</li>
+        </ul class="p-3">
 
-- Address validation during the checkout process, restricting orders to certain postal codes.
-- A summary page to review and confirm the order before finalizing.
+        <h4>Pizza Catalog:</h4>
+        <ul class="p-3">
+            <li>Display all available pizzas with names, prices, and descriptions.</li>
+            <li>Add pizzas to the shopping cart and view the cart contents at any time.</li>
+        </ul class="p-3">
 
-**Order Management:**
+        <h4>Shopping Cart:</h4>
+        <ul class="p-3">
+            <li>Add, remove, or adjust pizza quantities in the cart.</li>
+            <li>Real-time update of total price based on cart contents.</li>
+        </ul class="p-3">
 
-- Track the status of orders (ordered, prepared, delivered).
-- Option for the admin or user to update the order status.
+        <h4>Order Checkout:</h4>
+        <ul class="p-3">
+            <li>Address validation during the checkout process, restricting orders to certain postal codes.</li>
+            <li>A summary page to review and confirm the order before finalizing.</li>
+        </ul class="p-3">
 
-**Promotions:**
+        <h4>Order Management:</h4>
+        <ul class="p-3">
+            <li>Track the status of orders (ordered, prepared, delivered).</li>
+            <li>Option for the admin or user to update the order status.</li>
+        </ul class="p-3">
 
-- Apply discounts and special prices for eligible customers.
-- Handle promotional pricing dynamically during checkout.
+        <h4>Promotions:</h4>
+        <ul class="p-3">
+            <li>Apply discounts and special prices for eligible customers.</li>
+            <li>Handle promotional pricing dynamically during checkout.</li>
+        </ul class="p-3">
 
-**Database Integration:**
+        <h4>Database Integration:</h4>
+        <ul class="p-3">
+            <li>MySQL database to store and retrieve user data, orders, and pizza information.</li>
+            <li>Use of SQL queries for efficient data management.</li>
+        </ul class="p-3">
 
-- MySQL database to store and retrieve user data, orders, and pizza information.
-- Use of SQL queries for efficient data management.
+        <p>These functionalities offer a complete online ordering workflow, from browsing products to tracking the status of placed orders.</p>
 
-These functionalities offer a complete online ordering workflow, from browsing products to tracking the status of placed orders.
-
-
+        <div class="container mt-5">
+            <pre class="bg-light p-3 rounded">
+            <code>
 # WORKING METHOD (translation of the full assignment)
 
 The test consists of two parts.
@@ -111,3 +137,15 @@ _[X] Information about the business, ongoing promotions, terms, guestbook, etc._
 ### Order Information
 
 [X] Of course, the customer number, date, and time of the order will be kept track of here, as well as quantities, types, extras, cost price, and any information for the pizza delivery person.
+        </code>
+        </pre>
+        </div>
+
+
+        <?php require_once "presentation/components/footer.html"; ?>
+    </div>
+
+</body>
+
+
+</html>

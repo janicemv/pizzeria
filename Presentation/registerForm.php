@@ -50,10 +50,6 @@ $title = "Account Maken";
         </div>
     </div>
 
-    <pre>
-            <?php print_r($user); ?>
-            <?php print_r($bestelling); ?>
-        </pre>
 </body>
 
 </html>
