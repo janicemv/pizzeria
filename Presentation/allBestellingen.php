@@ -32,6 +32,7 @@ $title = "Bestellingen";
                         <th>Klant Id</th>
                         <th>Adres</th>
                         <th>Postcode</th>
+                        <th>Bemerkingen</th>
                         <th>Datum</th>
                         <th>Status</th>
                         <th class="text-center">🔄</th>
@@ -51,6 +52,9 @@ $title = "Bestellingen";
                             $postcode = $plaats->getCode();
                             $datum = $bestelling->getDate();
                             $status = $bestelling->getStatus();
+                            $bemerkingen = $bestelling->getBemerkingen();
+                            $klant = $klantService->findKlantById($bestelling->getKlantId());
+
 
 
                             $bestellijnen = $bestelling->getBestellijnen();
@@ -63,6 +67,10 @@ $title = "Bestellingen";
                                             <td><?= $klantNummer; ?></td>
                                             <td><?= htmlspecialchars($adres); ?></td>
                                             <td><?= $postcode; ?></td>
+                                            <td>
+                                                <?= htmlspecialchars($bestelling->getBemerkingen()); ?>
+                                                <p><?= htmlspecialchars($klant->getBemerkingen()); ?></p>
+                                            </td>
                                             <td><?= htmlspecialchars($datum); ?></td>
                                             <?php switch ($status):
                                                 case 1: ?>
@@ -92,6 +100,7 @@ $title = "Bestellingen";
                                             <td></td>
                                             <td></td>
                                             <td></td>
+                                            <td></td>
                                         <?php endif; ?>
                                         <td><?= htmlspecialchars($bestellijn->getPizza()->getNaam()); ?></td>
                                         <td><?= (int)$bestellijn->getQuantity(); ?></td>
@@ -100,22 +109,22 @@ $title = "Bestellingen";
 
                                 <?php endforeach; ?>
                                 <tr class="table-secondary">
-                                    <th colspan="8"></th>
+                                    <th colspan="9"></th>
                                     <th>Totaal</th>
                                     <th>€ <?= number_format($bestelling->getTotaal(), 2); ?></th>
                                 </tr>
                             <?php else: ?>
                                 <tr>
-                                    <td colspan="10">Geen bestellijnen gevonden voor deze bestelling.</td>
+                                    <td colspan="11">Geen bestellijnen gevonden voor deze bestelling.</td>
                                 </tr>
                             <?php endif; ?>
                             <tr>
-                                <td colspan="10"></td>
+                                <td colspan="11"></td>
                             </tr>
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="9">Geen bestellingen gevonden.</td>
+                            <td colspan="11">Geen bestellingen gevonden.</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>

@@ -18,7 +18,7 @@ class Klant
     private string $phone;
     private ?string $email;
     private ?string $password;
-    private bool $promo_eligible;
+    private bool $promo_eligible = false;
     private ?string $bemerkingen;
     private bool $guest;
 
@@ -87,7 +87,7 @@ class Klant
 
     public function getBemerkingen(): ?string
     {
-        return "promo klant - " . $this->bemerkingen;
+        return $this->bemerkingen;
     }
 
     public function getGuestStatus(): bool

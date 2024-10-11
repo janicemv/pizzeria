@@ -13,12 +13,12 @@ use Exceptions\LoginException;
 
 class KlantService
 {
-    public function addNewKlant(Klant $klant): int
+    public function addNewKlant(Klant $klant, bool $promoEligible = false): int
     {
         $klantDAO = new KlantDAO;
         if ($klantDAO->isKlant($klant->getEmail()) === null) {
 
-            return $klantDAO->addKlant($klant);
+            return $klantDAO->addKlant($klant, $promoEligible);
         } else {
             throw new RegistrationException('E-mail bestaat!');
         }

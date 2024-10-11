@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $userService = new KlantService();
 
-            if ($userService->checkLogin($email, $password)) {
+            if ($userService->checkLogin($email, md5($password))) {
                 $user = $userService->findKlantByEmail($email);
                 SessionService::addUser($user);
 

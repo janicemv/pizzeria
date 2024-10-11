@@ -10,6 +10,7 @@ spl_autoload_register();
 use Business\SessionService;
 use Business\PlaatService;
 use Business\BestelService;
+use Business\KlantService;
 
 $error = $_GET['error'] ?? '';
 
@@ -21,5 +22,6 @@ $bestellingen = $bestelService->getAllOrders();
 
 $plaatService = new PlaatService;
 
+$klantService = new KlantService;
 
 include("Presentation/allBestellingen.php");

@@ -1,26 +1,26 @@
 CREATE TABLE pizzas (
-    pizzaId INT AUTO_INCREMENT PRIMARY KEY,
-    naam VARCHAR(100),
-    omschrijving TEXT,
-    prijs DECIMAL(10, 2),
-    promo_prijs DECIMAL(10, 2),
-    beschikbaar BOOLEAN DEFAULT TRUE
+    pizzaId INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    naam VARCHAR(100) NOT NULL,
+    omschrijving TEXT NOT NULL,
+    prijs DECIMAL(10, 2) NOT NULL,
+    promo_prijs DECIMAL(10, 2) NOT NULL,
+    beschikbaar BOOLEAN NOT NULL DEFAULT TRUE
 );
 CREATE TABLE plaats (
-    plaatsId INT AUTO_INCREMENT PRIMARY KEY,
-    code INT UNIQUE,
-    gemeente VARCHAR(100),
-    bezorging BOOLEAN NOT NULL
+    plaatsId INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    code INT NOT NULL,
+    gemeente VARCHAR(100) NOT NULL,
+    bezorging BOOLEAN NOT NULL DEFAULT TRUE
 );
 
 CREATE TABLE klanten (
-    klantId INT AUTO_INCREMENT PRIMARY KEY,
-    naam VARCHAR(100),
-    voornaam VARCHAR(100),
-    straat VARCHAR(255),
-    nummer VARCHAR(10),
-    plaatsId INT,
-    phone VARCHAR(20),
+    klantId INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    naam VARCHAR(100) NOT NULL,
+    voornaam VARCHAR(100) NOT NULL,
+    straat VARCHAR(255) NOT NULL,
+    nummer VARCHAR(10) NOT NULL,
+    plaatsId INT NOT NULL,
+    phone VARCHAR(20) NOT NULL,
     email VARCHAR(100) UNIQUE,
     password VARCHAR(255),
     promo_eligible BOOLEAN DEFAULT FALSE,
@@ -37,10 +37,10 @@ CREATE TABLE klanten (
  
 CREATE TABLE bestellingen (
     bestelId INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    klantId INT,
-    datum DATETIME,
-    delivery_address VARCHAR(255),
-    delivery_plaatsId INT,
+    klantId INT NOT NULL,
+    datum DATETIME NOT NULL,
+    delivery_address VARCHAR(255) NOT NULL,
+    delivery_plaatsId INT NOT NULL,
     bemerkingen TEXT,
     status INT NOT NULL DEFAULT 1,
     FOREIGN KEY (klantId) REFERENCES klanten(klantId),

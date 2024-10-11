@@ -42,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $klant->setEmail($email);
             $klant->setPassword(md5($password));
+            $klant->setPromoEligible(false);
 
             $klantService = new KlantService();
 
