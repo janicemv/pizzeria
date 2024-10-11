@@ -25,24 +25,25 @@ $title = "Bestellingen";
 
         <div class="row">
 
-            <table class="table table-hover table-sm">
-                <thead>
-                    <tr class="table-primary">
-                        <th>Bestelling Id</th>
-                        <th>Klant Id</th>
-                        <th>Adres</th>
-                        <th>Postcode</th>
-                        <th>Bemerkingen</th>
-                        <th>Datum</th>
-                        <th>Status</th>
-                        <th class="text-center">🔄</th>
-                        <th>Pizza</th>
-                        <th>Aantal</th>
-                        <th>Prijs</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if (!empty($bestellingen)): ?>
+            <?php if (!empty($bestellingen)): ?>
+
+                <table class="table table-hover table-sm">
+                    <thead>
+                        <tr class="table-primary">
+                            <th>Bestelling Id</th>
+                            <th>Klant Id</th>
+                            <th>Adres</th>
+                            <th>Postcode</th>
+                            <th>Bemerkingen</th>
+                            <th>Datum</th>
+                            <th>Status</th>
+                            <th class="text-center">🔄</th>
+                            <th>Pizza</th>
+                            <th>Aantal</th>
+                            <th>Prijs</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         <?php foreach ($bestellingen as $bestelling): ?>
                             <?php
                             $bestelId = $bestelling->getBestelId();
@@ -124,13 +125,13 @@ $title = "Bestellingen";
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="11">Geen bestellingen gevonden.</td>
+                            <p>Geen bestellingen gevonden.</p>
                         </tr>
                     <?php endif; ?>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
 
-            <?php require_once "presentation/components/footer.html"; ?>
+                <?php require_once "presentation/components/footer.html"; ?>
         </div>
 
 </body>

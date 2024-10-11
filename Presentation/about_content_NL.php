@@ -17,7 +17,7 @@ $title = "Over";
     <div class="container">
         <h1><?= $title ?></h1>
 
-        <p>Dit project, ontwikkeld als een eindopdracht PHP, verkent de creatie van een functioneel online bestelsysteem voor een pizzeria. Geïmplementeerd volgens het MVC-model, integreert het systeem verschillende aspecten van een e-commerce platform, van het bekijken van pizza's tot het verwerken van bestellingen en voorraadbeheer. Bezoekers kunnen de beschikbare pizza's doorbladeren en artikelen aan hun winkelwagentje toevoegen zonder een account te hoeven aanmaken, wat zorgt voor een vereenvoudigde en soepele gebruikerservaring.</p>
+        <p>Dit project verkent de creatie van een functioneel online bestelsysteem voor een pizzeria. Geïmplementeerd volgens het MVC-model, integreert het systeem verschillende aspecten van een e-commerce platform, van het bekijken van pizza's tot het verwerken van bestellingen en voorraadbeheer. Bezoekers kunnen de beschikbare pizza's doorbladeren en artikelen aan hun winkelwagentje toevoegen zonder een account te hoeven aanmaken, wat zorgt voor een vereenvoudigde en soepele gebruikerservaring.</p>
 
         <p>Het doel van het systeem is om een echte online bestelomgeving te simuleren, waar klanten zich kunnen registreren, inloggen en hun bestellingen kunnen volgen. Bovendien bevat het systeem geavanceerde functies zoals het afhandelen van promoties, validatie van afleveradressen en orderbeheer, wat een uitgebreid overzicht biedt van hoe een robuuste en schaalbare PHP-toepassing te ontwikkelen. Dit project demonstreert hoe de beste programmeerpraktijken en een efficiënte database-structuur kunnen worden toegepast om te voldoen aan de behoeften van een klant in de echte wereld.</p>
 

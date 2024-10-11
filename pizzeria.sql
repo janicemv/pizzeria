@@ -1,62 +1,76 @@
-CREATE TABLE pizzas (
-    pizzaId INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    naam VARCHAR(100) NOT NULL,
-    omschrijving TEXT NOT NULL,
-    prijs DECIMAL(10, 2) NOT NULL,
-    promo_prijs DECIMAL(10, 2) NOT NULL,
-    beschikbaar BOOLEAN NOT NULL DEFAULT TRUE
-);
-CREATE TABLE plaats (
-    plaatsId INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    code INT NOT NULL,
-    gemeente VARCHAR(100) NOT NULL,
-    bezorging BOOLEAN NOT NULL DEFAULT TRUE
-);
+CREATE TABLE `pizzas` (
+  `pizzaId` int NOT NULL AUTO_INCREMENT,
+  `naam` varchar(100) NOT NULL,
+  `omschrijving` text NOT NULL,
+  `prijs` decimal(10,2) NOT NULL,
+  `promo_prijs` decimal(10,2) NOT NULL,
+  `beschikbaar` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`pizzaId`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE klanten (
-    klantId INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    naam VARCHAR(100) NOT NULL,
-    voornaam VARCHAR(100) NOT NULL,
-    straat VARCHAR(255) NOT NULL,
-    nummer VARCHAR(10) NOT NULL,
-    plaatsId INT NOT NULL,
-    phone VARCHAR(20) NOT NULL,
-    email VARCHAR(100) UNIQUE,
-    password VARCHAR(255),
-    promo_eligible BOOLEAN DEFAULT FALSE,
-    bemerkingen TEXT,
-    guest BOOLEAN NOT NULL,
-    FOREIGN KEY (plaatsId) REFERENCES plaats(plaatsId)
-);
+CREATE TABLE `plaats` (
+  `plaatsId` int NOT NULL AUTO_INCREMENT,
+  `code` int NOT NULL,
+  `gemeente` varchar(100) NOT NULL,
+  `bezorging` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`plaatsId`),
+  UNIQUE KEY `code` (`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
- CREATE TABLE statussen (
-  statusID int NOT NULL AUTO_INCREMENT,
-  status varchar(40) NOT NULL,
-  PRIMARY KEY (statusID)
- );
- 
-CREATE TABLE bestellingen (
-    bestelId INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    klantId INT NOT NULL,
-    datum DATETIME NOT NULL,
-    delivery_address VARCHAR(255) NOT NULL,
-    delivery_plaatsId INT NOT NULL,
-    bemerkingen TEXT,
-    status INT NOT NULL DEFAULT 1,
-    FOREIGN KEY (klantId) REFERENCES klanten(klantId),
-    FOREIGN KEY (delivery_plaatsId) REFERENCES plaats(plaatsId)
-    FOREIGN KEY (status) REFERENCES statussen(statusID),
-);
+CREATE TABLE `statussen` (
+  `statusID` int NOT NULL AUTO_INCREMENT,
+  `status` varchar(40) NOT NULL,
+  PRIMARY KEY (`statusID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE bestellijnen (
-    lijnId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    bestelId INT NOT NULL,
-    pizzaId INT NOT NULL,
-    hoeveel INT NOT NULL,
-    prijs DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (bestelId) REFERENCES bestellingen(bestelId),
-    FOREIGN KEY (pizzaId) REFERENCES pizzas(pizzaId)
-);
+CREATE TABLE `klanten` (
+  `klantId` int NOT NULL AUTO_INCREMENT,
+  `naam` varchar(100) NOT NULL,
+  `voornaam` varchar(100) NOT NULL,
+  `straat` varchar(255) NOT NULL,
+  `nummer` varchar(10) NOT NULL,
+  `plaatsId` int NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `promo_eligible` tinyint(1) DEFAULT '0',
+  `bemerkingen` text,
+  `guest` tinyint(1) NOT NULL,
+  PRIMARY KEY (`klantId`),
+  UNIQUE KEY `email` (`email`),
+  KEY `klanten_ibfk_1` (`plaatsId`),
+  CONSTRAINT `klanten_ibfk_1` FOREIGN KEY (`plaatsId`) REFERENCES `plaats` (`plaatsId`)
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `bestellingen` (
+  `bestelId` int NOT NULL AUTO_INCREMENT,
+  `klantId` int NOT NULL,
+  `datum` datetime NOT NULL,
+  `delivery_address` varchar(255) NOT NULL,
+  `delivery_plaatsId` int NOT NULL,
+  `bemerkingen` text,
+  `status` int NOT NULL DEFAULT '1',
+  PRIMARY KEY (`bestelId`),
+  KEY `status` (`status`),
+  KEY `bestellingen_ibfk_1` (`klantId`),
+  KEY `bestellingen_ibfk_2` (`delivery_plaatsId`),
+  CONSTRAINT `bestellingen_ibfk_1` FOREIGN KEY (`klantId`) REFERENCES `klanten` (`klantId`),
+  CONSTRAINT `bestellingen_ibfk_2` FOREIGN KEY (`delivery_plaatsId`) REFERENCES `plaats` (`plaatsId`),
+  CONSTRAINT `bestellingen_ibfk_3` FOREIGN KEY (`status`) REFERENCES `statussen` (`statusID`)
+) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `bestellijnen` (
+  `lijnId` int NOT NULL AUTO_INCREMENT,
+  `bestelId` int NOT NULL,
+  `pizzaId` int NOT NULL,
+  `prijs` decimal(10,2) NOT NULL,
+  `hoeveel` int NOT NULL,
+  PRIMARY KEY (`lijnId`),
+  KEY `bestelId` (`bestelId`),
+  KEY `pizzaId` (`pizzaId`),
+  CONSTRAINT `bestellijnen_ibfk_1` FOREIGN KEY (`bestelId`) REFERENCES `bestellingen` (`bestelId`),
+  CONSTRAINT `bestellijnen_ibfk_2` FOREIGN KEY (`pizzaId`) REFERENCES `pizzas` (`pizzaId`)
+) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 
